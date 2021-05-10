@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using Extraction.Weapons;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -21,6 +22,11 @@ namespace Extraction.UI
 		{
 			var player = Player.Local;
 			if ( player == null ) return;
+
+			// if ( player.Inventory.Active is BaseExtractionWeapon weapon )
+			// {
+			// 	AmmoText.Text = weapon.AmmoClip.ToString();
+			// }
 		}
 	}
 }

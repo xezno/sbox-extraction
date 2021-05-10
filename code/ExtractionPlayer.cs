@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using System;
 using System.Diagnostics;
+using Extraction.Weapons;
 
 namespace Extraction
 {
@@ -8,6 +9,7 @@ namespace Extraction
 	{
 		public ExtractionPlayer()
 		{
+			Inventory = new BaseInventory( this );
 			Log.Info("Extraction Player");
 		}
 
@@ -21,6 +23,10 @@ namespace Extraction
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
+			
+			Inventory.Add( new SMG(), true );
+			Inventory.Add( new Pistol(), false );
+			
 			Dress();
 			base.Respawn();
 		}

@@ -10,8 +10,9 @@ namespace Extraction.UI
 		{
 			if (!IsClient) return;
 			
-			// RootPanel.AddChild<ExtractionChatPanel>();
+			RootPanel.AddChild<ExtractionChatPanel>();
 			RootPanel.AddChild<GearPanel>();
+			RootPanel.AddChild<Crosshair>();
 		}	
 	}
 }

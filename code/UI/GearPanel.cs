@@ -14,7 +14,6 @@ namespace Extraction.UI
 			
 			AddChild<Health>();
 			AddChild<Ammo>();
-			AddChild<Crosshair>();
 		}	
 	}
 }

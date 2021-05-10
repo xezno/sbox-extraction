@@ -19,24 +19,6 @@ label {
   background-color: #ff0000;
 }
 
-.crosshair {
-  &.crosshair-dot {
-    position: absolute; 
-    left: 50%; 
-    top: 50%;
-    background-color: white; 
-    border-radius: 10px; 
-    width: 6px; 
-    height: 6px; 
-    border: 2px solid black; 
-    transform: translate( -50% -50% );
-  }
-  
-  &.crosshair-cross {
-    // TODO
-  }
-}
-
 .bottom {
   position: absolute;
   bottom: 0;

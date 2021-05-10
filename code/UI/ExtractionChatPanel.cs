@@ -98,7 +98,7 @@ namespace Extraction.UI
 				return;
 
 			Log.Info( $"{ConsoleSystem.Caller}: {message}" );
-			AddChatEntry( Player.All, ConsoleSystem.Caller.Name, message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
+			AddChatEntry( ConsoleSystem.Caller.Name, message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
 		}
 
 	}
