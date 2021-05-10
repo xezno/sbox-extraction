@@ -37,7 +37,7 @@ namespace Extraction
 			var player = Player.Local;
 			
 			float targetFov = ExtractionConfig.FieldOfView;
-			if ( player.Velocity.LengthSquared > HighSpeed ) // Length^2 is faster than Length
+			if ( player.Velocity.WithZ( 0 ).LengthSquared > HighSpeed ) // Length^2 is faster than Length
 				targetFov = ExtractionConfig.SprintFieldOfView;
 
 			FieldOfView = FieldOfView.LerpTo( targetFov , 10.0f * Time.Delta, false );
