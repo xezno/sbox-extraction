@@ -9,9 +9,9 @@ namespace Extraction.UI
 		public ExtractionHUD()
 		{
 			if (!IsClient) return;
-
-			RootPanel.StyleSheet.Load("/ui/Hud.scss");
-			RootPanel.AddChild<ChatBox>();
-		}
+			
+			// RootPanel.AddChild<ExtractionChatPanel>();
+			RootPanel.AddChild<GearPanel>();
+		}	
 	}
 }

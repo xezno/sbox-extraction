@@ -2,9 +2,9 @@
 
 namespace Extraction
 {
-	public class ExtractionController : WalkController
+	public class PlayerController : WalkController
 	{
-		public ExtractionController() : base()
+		public PlayerController() : base()
 		{
 			Duck = new ExtractionDuck( this );
 		}
