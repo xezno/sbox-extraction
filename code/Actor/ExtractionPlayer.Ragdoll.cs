@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace Extraction
+namespace Extraction.Actor
 {
 	partial class ExtractionPlayer
 	{

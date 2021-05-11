@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using Trace = Sandbox.Trace;
 
-namespace Extraction
+namespace Extraction.Camera
 {
 	public class DeathCamera : BaseCamera
 	{
@@ -25,8 +25,7 @@ namespace Extraction
 			Vector3 targetPos = FocusPoint + GetViewOffset();
 			
 			// Col: cast ray from focus point to target
-			
-			var trace = Trace.Ray( FocusPoint, targetPos ).Ignore( player ).Radius( boxSize );
+			var trace = Trace.Ray( FocusPoint, targetPos ).Radius( boxSize ).WorldOnly();
 			var traceResult = trace.Run();
 			if ( traceResult.Hit )
 			{

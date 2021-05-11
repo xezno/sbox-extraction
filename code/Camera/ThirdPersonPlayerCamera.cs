@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Extraction
+namespace Extraction.Camera
 {
 	public class ThirdPersonPlayerCamera : ThirdPersonCamera
 	{

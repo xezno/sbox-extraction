@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Sandbox;
 
-namespace Extraction
+namespace Extraction.Camera
 {
 	public class PlayerCamera : FirstPersonCamera
 	{

@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using Extraction.Actor;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -6,22 +7,26 @@ namespace Extraction.UI
 {
 	public class Health : Panel
 	{
-		public Label HealthText;
+		public Label healthText;
+		public Label heroText;
 
 		public Health()
 		{
 			SetClass( "health", true );
 			
-			HealthText = Add.Label( "100", "current-health" );
+			healthText = Add.Label( "🖤 100", "current-health" );
+			heroText = Add.Label( "HeroName", "current-hero" );
 		}
 
 		public override void Tick()
 		{
-			var player = Player.Local;
+			var player = Player.Local as ExtractionPlayer;
 			if ( player == null ) return;
 
-			HealthText.Text = $"{player.Health:n0}";
-			HealthText.SetClass( "danger", player.Health < 40.0f );
+			healthText.Text = $"🖤 {player.Health:n0}"; // TODO: Proper icons
+			healthText.SetClass( "danger", player.Health < 40.0f );
+
+			heroText.Text = $"Hero: {player.HeroId ?? "WTF"}";
 		}
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using Sandbox;
 
-namespace Extraction
+namespace Extraction.Actor
 {
-	public class ExtractionDuck : Duck
+	public class Duck : Sandbox.Duck
 	{
-		public ExtractionDuck( BasePlayerController controller ) : base( controller ) { }
+		public Duck( BasePlayerController controller ) : base( controller ) { }
 		
 		public override void PreTick() 
 		{

@@ -1,3 +1,5 @@
 .codegen/
 obj/
 code/accesslist.txt
+
+codegen-*.txt

@@ -5,7 +5,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System;
 
-namespace Extraction.UI
+namespace Sandbox.UI
 {
 	public partial class ExtractionChatPanel : Panel
 	{
@@ -24,11 +24,17 @@ namespace Extraction.UI
 
 			Input = Add.TextEntry( "" );
 			Input.AddEvent( "onsubmit", () => Submit() );
-			Input.AddEvent( "onblur", () => Close() );
+			Input.AddEvent( "onblur", () => Blur() );
 			Input.AcceptsFocus = true;
 			Input.AllowEmojiReplace = true;
 
 			Sandbox.Hooks.Chat.OnOpenChat += Open;
+		}
+
+		void Blur()
+		{
+			Input.Text = "";
+			Close();
 		}
 
 
@@ -98,7 +104,7 @@ namespace Extraction.UI
 				return;
 
 			Log.Info( $"{ConsoleSystem.Caller}: {message}" );
-			AddChatEntry( ConsoleSystem.Caller.Name, message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
+			AddChatEntry( Player.All, ConsoleSystem.Caller.Name, message, $"avatar:{ConsoleSystem.Caller.SteamId}" );
 		}
 
 	}

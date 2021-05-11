@@ -1,0 +1,16 @@
+{
+  "name": "Duke",
+  "country": "Australia",
+  "bodyType": "Heavy",
+  "health": 200,
+  "speed": 335,
+  "class": "Assault",
+  "description": "Lorem ipsum dolor sit amet",
+
+  "clothing": [
+    "models/citizen_clothes/trousers/trousers.smart.vmdl",
+    "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
+    "models/citizen_clothes/shoes/shoes.smartbrown.vmdl",
+    "models/citizen_clothes/beards/beard_trucker_brown.vmdl"
+  ]
+}

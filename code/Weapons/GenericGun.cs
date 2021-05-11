@@ -21,14 +21,23 @@ namespace Extraction.Weapons
 
 			SetModel( WorldModelPath );
 			AmmoClip = ClipSize;
+			ReserveAmmo = AmmoClip * 4;
 		}
 
 		public override bool CanPrimaryAttack()
 		{
+			var hasAmmo = AmmoClip > 0;
+			var canAutoFire = AutoFire && hasAmmo; // Prevent the gun from spamming dry sounds
+			
 			var playerIsShooting =
-				AutoFire ? Owner.Input.Down( InputButton.Attack1 ) : Owner.Input.Pressed( InputButton.Attack1 );
+				(canAutoFire && Owner.Input.Down( InputButton.Attack1 )) || Owner.Input.Pressed( InputButton.Attack1 );
 
-			return base.CanPrimaryAttack() && playerIsShooting;
+			var playerIsAlive = Owner.Health > 0;
+			
+			var gunCanFire = (PrimaryRate <= 0) || (TimeSincePrimaryAttack > (1 / PrimaryRate));
+
+
+			return playerIsShooting && gunCanFire && playerIsAlive;
 		}
 
 		public override void AttackPrimary()
@@ -43,6 +52,11 @@ namespace Extraction.Weapons
 				return;
 			}
 
+			if ( AmmoClip <= 3 && ClipSize > 3 )
+			{
+				// Nearing end of clip - alert player
+				PlaySound( "pistol-dryfire" );	
+			}
 			ShootEffects();
 			PlaySound( ShotSound );
 

@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using Extraction.Actor;
+using Sandbox;
 using Extraction.UI;
 
 namespace Extraction

@@ -16,6 +16,7 @@ namespace Extraction.Weapons
 		public virtual int ClipSize => 16;
 		public virtual float ReloadTime => 3.0f;
 
+		[NetPredicted] public int ReserveAmmo { get; set; }
 		[NetPredicted] public int AmmoClip { get; set; }
 		[NetPredicted] public TimeSince TimeSinceReload { get; set; }
 		[NetPredicted] public bool IsReloading { get; set; }
@@ -25,7 +26,7 @@ namespace Extraction.Weapons
 
 		public int AvailableAmmo()
 		{
-			return int.MaxValue; // TODO: Player ammo
+			return ReserveAmmo;
 		}
 
 		public override void ActiveStart( Entity ent )
@@ -37,15 +38,14 @@ namespace Extraction.Weapons
 		public override void Reload()
 		{
 			if ( IsReloading )
-			{
 				return;
-			}
 
 			if ( AmmoClip >= ClipSize )
-			{
 				return;
-			}
 
+			if ( ReserveAmmo <= 0 )
+				return;
+			
 			TimeSinceReload = 0;
 
 			IsReloading = true;
@@ -74,7 +74,17 @@ namespace Extraction.Weapons
 		public virtual void OnReloadFinish()
 		{
 			IsReloading = false;
-			AmmoClip = ClipSize;
+			
+			if (ReserveAmmo > ClipSize - AmmoClip)
+			{
+				ReserveAmmo -= ClipSize - AmmoClip;
+				AmmoClip = ClipSize;
+			}
+			else
+			{
+				AmmoClip += ReserveAmmo;
+				ReserveAmmo = 0;
+			}
 		}
 
 		[ClientRpc]
@@ -83,6 +93,26 @@ namespace Extraction.Weapons
 			ViewModelEntity?.SetAnimParam( "reload", true );
 
 			// TODO - player third person model reload
+		}
+
+		public override bool CanSecondaryAttack()
+		{
+			return base.CanSecondaryAttack() && Owner.Health > 0;
+		}
+
+		public override void AttackSecondary()
+		{
+			// ADS
+			Log.Info( "Secondary Attack" );
+			
+			AimDownSights();
+		}
+
+		[ClientRpc]
+		public virtual void AimDownSights()
+		{
+			Log.Info( ViewModelEntity.LocalPos.ToString() );
+			ViewModelEntity.LocalPos = new Vector3( 0, 0.5f, 0 );
 		}
 
 		public override void AttackPrimary()
@@ -144,11 +174,6 @@ namespace Extraction.Weapons
 			CrosshairPanel?.OnEvent( "fire" );
 		}
 
-		public new virtual bool CanPrimaryAttack()
-		{
-			return base.CanPrimaryAttack() && Owner.Health > 0;
-		}
-
 		/// <summary>
 		///     Shoot a single bullet
 		/// </summary>
@@ -205,7 +230,6 @@ namespace Extraction.Weapons
 		[ClientRpc]
 		public virtual void DryFire()
 		{
-			// TODO: Stop this repeating on weapons with auto fire
 			PlaySound( "pistol-dryfire" );
 		}
 

@@ -17,11 +17,11 @@ namespace Extraction.Weapons
 
 		public override int ClipSize => 30;
 
-		public override float PrimaryRate => 15.0f;
+		public override float PrimaryRate => 10.0f;
 		public override float SecondaryRate => 1.0f;
 		public override float ReloadTime => 3.0f;
 
-		public override bool AutoFire => false;
+		public override bool AutoFire => true;
 
 		public override int Slot => 0;
 	}

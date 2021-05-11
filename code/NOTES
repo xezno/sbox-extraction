@@ -1,0 +1,31 @@
+﻿
+TODO Controls:
+- +iv_view: Ping
+- +iv_menu: Ability1
+- +iv_use: Ability2
+- +iv_slot[1-3]: Inventory 1 to 3
+- Need quick menu bind??
+
+TODO UI:
+- Health / ammo icons
+- Loadout viz
+- Health bar
+- Ability viz
+
+TODO Movement:
+- Wall bouncing
+- Long jumping?
+- Sliding
+
+TODO Feel:
+- Weapon sway
+- Head bobbing
+
+TODO Bugs:
+- Prevent sprint & firing at same time
+- Chat is completely fucked
+    
+TODO Weapons:
+- Shotguns
+- Melee
+- Burst fire weapons
