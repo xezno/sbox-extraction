@@ -10,6 +10,7 @@ namespace Extraction.UI
 		{
 			if (!IsClient) return;
 			
+			RootPanel.AddChild<Pings>();
 			RootPanel.AddChild<Crosshair>();
 			
 			RootPanel.AddChild<GearPanel>();

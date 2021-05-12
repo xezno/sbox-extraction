@@ -15,6 +15,9 @@
 		<None Update="**\*.sass" DependentUpon="%(Filename).cs" />
 		<None Update="**\*.html" DependentUpon="%(Filename).cs" />
 		<None Update="**\*.htm" DependentUpon="%(Filename).cs" />
+		<None Update="UI\ExtractionChat.scss">
+		  <DependentUpon>ExtractionChatPanel.cs</DependentUpon>
+		</None>
 	</ItemGroup>
 
   <PropertyGroup>

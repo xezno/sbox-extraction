@@ -8,14 +8,14 @@ namespace Extraction.UI
 	public class Health : Panel
 	{
 		public Label healthText;
-		public Label heroText;
+		public Panel healthIcon;
 
 		public Health()
 		{
 			SetClass( "health", true );
-			
-			healthText = Add.Label( "🖤 100", "current-health" );
-			heroText = Add.Label( "HeroName", "current-hero" );
+
+			healthIcon = Add.Panel( "health-icon" );
+			healthText = Add.Label( "0", "current-health" );
 		}
 
 		public override void Tick()
@@ -23,10 +23,8 @@ namespace Extraction.UI
 			var player = Player.Local as ExtractionPlayer;
 			if ( player == null ) return;
 
-			healthText.Text = $"🖤 {player.Health:n0}"; // TODO: Proper icons
-			healthText.SetClass( "danger", player.Health < 40.0f );
-
-			heroText.Text = $"Hero: {player.HeroId ?? "WTF"}";
+			healthText.Text = player.Health.ToString("D0");
+			healthText.SetClass( "danger", player.Health < 33.3f );
 		}
 	}
 }

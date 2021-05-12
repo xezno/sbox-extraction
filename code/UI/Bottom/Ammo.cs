@@ -11,12 +11,14 @@ namespace Extraction.UI
 		public Panel ammoImage;
 		public Label ammoText;
 		public Label reserveAmmoText;
+		public Panel ammoIcon;
 
 		public Ammo()
 		{
 			SetClass( "ammo", true );
 
-			ammoImage = Add.Panel( "ammo-icon" );
+
+			ammoIcon = Add.Panel( "ammo-icon" );
 			ammoText = Add.Label( "30", "ammo-current" );
 			reserveAmmoText = Add.Label( "90", "ammo-reserve" );
 		}
@@ -29,26 +31,14 @@ namespace Extraction.UI
 			var reserveAmmo = ammoInfo.Item2;
 			
 			if ( currentAmmo < 0 )
-			{
 				ammoText.Text = "??";
-				// ammoText.Style.Display = DisplayMode.None;
-			}
 			else
-			{
-				ammoText.Text = currentAmmo.ToString();
-				// ammoText.Style.Display = DisplayMode.Flex;
-			}
+				ammoText.Text = currentAmmo.ToString("D3");
 
 			if ( reserveAmmo < 0 )
-			{
 				reserveAmmoText.Text = "??";
-				// reserveAmmoText.Style.Display = DisplayMode.None;
-			}
 			else
-			{
-				reserveAmmoText.Text = reserveAmmo.ToString();
-				// reserveAmmoText.Style.Display = DisplayMode.Flex;
-			}
+				reserveAmmoText.Text = reserveAmmo.ToString("D3");
 		}
 
 		/// <returns>Current ammo, reserve ammo</returns>
@@ -56,7 +46,7 @@ namespace Extraction.UI
 		{
 			var player = Player.Local;
 			if ( player == null ) return (-1, -1);
-			if ( player.Inventory.Active == null ) return (-1, -1);
+			if ( player.Inventory?.Active == null ) return (-1, -1);
 			
 			if ( player.Inventory.Active is BaseExtractionWeapon weapon )
 			{

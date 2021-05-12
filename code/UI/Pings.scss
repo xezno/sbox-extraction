@@ -1,0 +1,30 @@
+﻿pings
+{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+
+  baseping
+  {
+    font-family: Inter;
+    position: absolute;
+    font-weight: 500;
+    color: white;
+    font-size: 40px;
+    transform-origin: 100% 0%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+
+    .pingimage {
+      width: 32px;
+      height: 32px;
+
+      background-image: url( /ui/extraction/ping-marker.png );
+      background-size: 100%;
+    }
+  }
+}

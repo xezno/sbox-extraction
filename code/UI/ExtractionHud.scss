@@ -9,14 +9,11 @@
 label {
   font-family: Inter;
   font-size: 32px;
-  font-weight: 900;
-  color: black;
-  padding: 10px 15px;
-  background-color: white;
+  font-weight: 800;
 }
 
 .danger {
-  background-color: #ff0000;
+  color: #ff0000;
 }
 
 .bottom {
@@ -26,33 +23,70 @@ label {
   right: 0;
   padding: 50px;
 
-  & .health, & .ammo {
-    padding: 0 50px;
-  }
-
-  & .health {
-    position: absolute;
-    left: 0;
-  }
-
-  & .ammo {
-    position: absolute;
-    right: 0;
-
-    & .ammo-reserve {
-      background-color: transparent;
-      color: white;
-      text-shadow: 0 0 15px #00000088;
-    }
+  health, ammo, heroportrait {
+    color: black;
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 0 25px #00000088;
   }
 }
 
-.health-icon {
-  width: 64px;
-  height: 64px;
+
+.health-icon, .ammo-icon {
+  width: 32px;
+  height: 32px;
+
+  margin-top: 4px;
+  margin-right: 8px;
+
+  float: left;
+
+  background-size: 100%;
 }
 
-// Right hand side
-.loadout {
+
+health {
+  .health-icon {
+    background-image: url( /ui/extraction/health-icon-xs.png );
+  }
+}
+
+ammo {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+
+  .ammo-reserve {
+    font-size: 24px;
+    font-weight: 700;
+    
+    margin-left: 8px;
+  }
   
+  .ammo-icon {
+    background-image: url( /ui/extraction/ammo-icon-xs.png );
+  }
 }
+
+heroportrait {
+  position: absolute; 
+  bottom: 125px; 
+  left: 50px; 
+  padding: 0;
+  overflow: hidden;
+  flex-direction: column;
+  border-radius: 10px;
+  
+  .hero-image {
+    // HACK: overflow:hidden currently doesn't work(?), at least for this, so just apply border radius here
+    border-radius: 0 7px 7px 0;
+  }
+  
+  .current-hero {
+    padding: 15px;
+  }
+}
+

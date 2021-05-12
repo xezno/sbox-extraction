@@ -1,8 +1,6 @@
 ﻿using Sandbox;
 using Extraction.Camera;
-using Extraction.Hero;
 using Extraction.Weapons;
-using Sandbox.UI;
 
 namespace Extraction.Actor
 {
@@ -11,13 +9,6 @@ namespace Extraction.Actor
 		public ExtractionPlayer()
 		{
 			Inventory = new BaseInventory( this );
-		}
-
-		public void ChangeHero( string newHeroId )
-		{
-			// We want to change hero; access Hero directly, change the ID there
-			ExtractionChatPanel.AddInformation( this, $"Hero {newHeroId} selected; this will change when you respawn" );
-			WishHeroId = newHeroId;
 		}
 
 		public override void Respawn()
@@ -31,7 +22,7 @@ namespace Extraction.Actor
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
 
-			Inventory = new BaseInventory( this ); // Clear
+			Inventory = new ExtractionInventory( this ); // Clear
 			
 			Inventory.Add( new SMG(), true );
 			Inventory.Add( new Pistol(), false );
@@ -79,6 +70,11 @@ namespace Extraction.Actor
 			else if ( Input.Pressed( ExtractionConfig.InventorySlot3 ) )
 			{
 				Inventory.SetActiveSlot( 2, true );
+			}
+
+			if ( Input.Pressed( ExtractionConfig.Ping ) )
+			{
+				SetPing();
 			}
 		}
 	}

@@ -9,6 +9,11 @@ namespace Extraction
 		public static float SprintFieldOfView => FieldOfView * 1.1f;
 		#endregion
 		
+		#region Heroes
+
+		public static string DefaultHero => "duke";
+		#endregion
+		
 		#region Controls
 		// This is kind of a shit way of doing controls, but it's good enough for now & means that if stuff changes
 		// then it should be pretty easy to fix things

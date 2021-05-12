@@ -10,8 +10,11 @@ namespace Extraction.UI
 		public GearPanel()
 		{
 			StyleSheet.Load( "/ui/ExtractionHud.scss" );
+			
 			SetClass( "bottom", true );
 			
+			AddChild<Loadout>();
+			AddChild<HeroPortrait>();
 			AddChild<Health>();
 			AddChild<Ammo>();
 		}	

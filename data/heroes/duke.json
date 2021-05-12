@@ -1,7 +1,7 @@
 {
   "name": "Duke",
-  "country": "Australia",
-  "bodyType": "Heavy",
+  "country": "United Kingdom",
+  "bodyType": "Medium",
   "health": 200,
   "speed": 335,
   "class": "Assault",
