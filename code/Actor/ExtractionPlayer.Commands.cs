@@ -6,11 +6,18 @@ namespace Extraction.Actor
 {
 	public partial class ExtractionPlayer
 	{
-		[ServerCmd( "togglethirdperson", Help = "Toggles the third person camera" )]
-		public static void SwitchCamera()
+		private static ExtractionPlayer GetCommandCaller()
 		{
 			var target = ConsoleSystem.Caller;
 			var player = ((ExtractionPlayer)target);
+
+			return player;
+		}
+		
+		[ServerCmd( "togglethirdperson", Help = "Toggles the third person camera" )]
+		public static void SwitchCamera()
+		{
+			var player = GetCommandCaller();
 			Log.Info( "Toggled third person mode" );
 			if ( player.Camera.GetType() == typeof( PlayerCamera ) )
 			{
@@ -22,16 +29,15 @@ namespace Extraction.Actor
 			}
 		}
 
-		[ServerCmd( "sethero", Help = "Set Hero" )]
+		[ServerCmd( "sethero", Help = "Set player hero" )]
 		public static void SetHero( string hero = "duke" )
 		{
-			var target = ConsoleSystem.Caller;
-			var player = ((ExtractionPlayer)target);
+			var player = GetCommandCaller();
 			player.ChangeHero( hero );
 			Log.Info( "Set player hero" );
 		}
 		
-		[ServerCmd( "fov", Help = "Change the field of view" )]
+		[ClientCmd( "fov", Help = "Change the field of view" )]
 		public static void FovCommand(float newFov)
 		{
 			if ( newFov > 179 || newFov < 0 )
@@ -46,8 +52,7 @@ namespace Extraction.Actor
 		[ServerCmd( "setammo", Help = "Sets player reserve ammo amount" )]
 		public static void SetAmmo(int newAmmo)
 		{
-			var target = ConsoleSystem.Caller;
-			var player = ((ExtractionPlayer)target);
+			var player = GetCommandCaller();
 			if ( player.Inventory.Active is BaseExtractionWeapon weapon )
 			{
 				weapon.ReserveAmmo = newAmmo;
@@ -55,31 +60,12 @@ namespace Extraction.Actor
 			Log.Info( $"Set reserve ammo to {newAmmo}" );
 		}
 
-		[ServerCmd( "give", Help = "giv wepon :DDD" )]
-		public static void SetPrimary(string primaryId)
-		{
-			var target = ConsoleSystem.Caller;
-			var player = ((ExtractionPlayer)target);
-			player.Inventory.DropActive();
-			player.Inventory.Add( Entity.Create( primaryId ) );
-			Log.Info( $"gave playr {primaryId}" );
-		}
-
 		[ServerCmd( "damage", Help = "Damage the player" )]
 		public static void DoDamage(int damage = 10)
 		{
-			var target = ConsoleSystem.Caller;
-			var player = ((ExtractionPlayer)target);
+			var player = GetCommandCaller();
 			player.TakeDamage(new DamageInfo() { Damage = damage });
 			Log.Info( $"Damaged the player for {damage}" );
-		}
-
-		[ServerCmd( "kill2", Help = "Kill the player" )]
-		public static void KillPlayer()
-		{
-			var target = ConsoleSystem.Caller;
-			(Game.Current as Game)?.DoPlayerSuicide( target );
-			Log.Info( $"killed lol" );
 		}
 	}
 }
