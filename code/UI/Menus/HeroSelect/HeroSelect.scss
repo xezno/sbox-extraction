@@ -1,0 +1,56 @@
+﻿heroselect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  color: white;
+  background-color: rgba( black, 0.9 );
+  z-index: 10;
+  
+  padding: 50px;
+  
+  flex-direction: column;
+  pointer-events: all;
+  
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 600;
+  
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
+
+herocard {
+  background-color: white;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  color: black;
+  border-radius: 15px;
+  transition: all 150ms ease;
+  
+  &:hover {
+    background-color: #dddddd;
+  }
+  
+  label {
+    font-size: 20px;
+  }
+}
+
+.hero-portrait {
+  justify-content: center;
+  min-width: 128px;
+  min-height: 128px;
+  margin-right: 15px;
+  border-radius: 15px;
+}
+
+.hero-info {
+  flex-direction: column;
+  justify-content: center;
+}

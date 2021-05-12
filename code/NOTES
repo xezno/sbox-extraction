@@ -1,4 +1,7 @@
 ﻿
+TODO Gameplay:
+- Game rules
+
 TODO Controls:
 - +iv_menu: Ability1
 - +iv_use: Ability2
@@ -9,7 +12,9 @@ TODO UI:
 - Loadout viz
 - Health bar
 - Ability viz
-- Change hero portrait when hero switched 
+- Change hero portrait when hero switched
+- Improve ping UI
+    - If it's off-screen, clamp it to the sides 
 
 TODO Movement:
 - Wall bouncing

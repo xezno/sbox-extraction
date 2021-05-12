@@ -15,7 +15,7 @@ namespace Extraction.Actor
 		{
 			SetModel( "models/citizen/citizen.vmdl" );
 			Controller = new Controller();
-			Animator = new StandardPlayerAnimator();
+			Animator = new ExtractionPlayerAnimator();
 			Camera = new PlayerCamera();
 			EnableAllCollisions = true;
 			EnableDrawing = true;

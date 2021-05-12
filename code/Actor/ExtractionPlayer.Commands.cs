@@ -37,7 +37,7 @@ namespace Extraction.Actor
 			Log.Info( "Set player hero" );
 		}
 		
-		[ClientCmd( "fov", Help = "Change the field of view" )]
+		[ClientCmd( "fov", Help = "Change the field of view", CanBeCalledFromServer = false )]
 		public static void FovCommand(float newFov)
 		{
 			if ( newFov > 179 || newFov < 0 )
@@ -47,6 +47,18 @@ namespace Extraction.Actor
 			}
 			ExtractionConfig.FieldOfView = newFov;
 			Log.Info( $"Set FOV to {ExtractionConfig.FieldOfView}" );
+		}
+		
+		[ClientCmd( "fov_sprint", Help = "Change the field of view", CanBeCalledFromServer = false )]
+		public static void SprintFovCommand(float newMultiplier)
+		{
+			if ( newMultiplier > 2 || newMultiplier < 1 )
+			{
+				Log.Error( "Bad FOV value!" );
+				return;
+			}
+			ExtractionConfig.SprintFieldOfView = newMultiplier;
+			Log.Info( $"Set sprint FOV multiplier to {ExtractionConfig.SprintFieldOfView}" );
 		}
 
 		[ServerCmd( "setammo", Help = "Sets player reserve ammo amount" )]

@@ -6,7 +6,9 @@ namespace Extraction
 	{
 		#region Camera
 		public static float FieldOfView { get; set; } = 100f;
-		public static float SprintFieldOfView => FieldOfView * 1.1f;
+
+		private static float sprintFovMultiplier = 1.1f;
+		public static float SprintFieldOfView { get => FieldOfView * sprintFovMultiplier; set => sprintFovMultiplier = value; }
 		#endregion
 		
 		#region Heroes

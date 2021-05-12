@@ -13,7 +13,7 @@ namespace Extraction
 		{
 			HeroCollection.Load();
 			
-			Log.Info("Game Started");
+			Log.Info( "Game Started" );
 			if (IsServer)
 				extractionHud = new ExtractionHUD();
 		}
@@ -22,7 +22,6 @@ namespace Extraction
 		public static void RecreateHud()
 		{
 			extractionHud.Delete();
-
 			extractionHud = new ExtractionHUD();
 			
 			Log.Info( "Recreated HUD" );

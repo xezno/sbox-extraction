@@ -11,6 +11,7 @@
 		public long Speed { get; set; } = 320;
 		public string Class { get; set; } = "";
 		public string Description { get; set; } = "";
+		public string Portrait { get; set; } = "/ui/extraction/placeholder.png";
 		public string[] Clothing { get; set; } = new string[0];
 	} 
 }

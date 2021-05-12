@@ -5,8 +5,8 @@
   "health": 200,
   "speed": 335,
   "class": "Assault",
-  "description": "Lorem ipsum dolor sit amet",
-  "portrait": "ui/extraction/hero-portrait-placeholder.png",
+  "description": "Duke description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget nibh at est tempus congue ac id ex. Vivamus pretium dolor laoreet, ultricies enim nec, auctor risus. Duis a bibendum dolor.",
+  "portrait": "ui/extraction/placeholder.png",
 
   "clothing": [
     "models/citizen_clothes/trousers/trousers.smart.vmdl",

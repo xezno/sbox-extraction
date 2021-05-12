@@ -18,7 +18,7 @@ namespace Sandbox.UI
 		{
 			Current = this;
 
-			StyleSheet.Load( "/ui/ExtractionChat.scss" );
+			StyleSheet.Load( "/UI/Game/ExtractionChat.scss" );
 
 			Canvas = Add.Panel( "chat_canvas" );
 
