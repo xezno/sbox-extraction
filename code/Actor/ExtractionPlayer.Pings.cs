@@ -19,6 +19,7 @@ namespace Extraction.Actor
 			}
 		}
 		
+		[ClientRpc]
 		void SetPing()
 		{
 			if ( IsServer )
@@ -34,20 +35,20 @@ namespace Extraction.Actor
 				Log.Info( "Pinging point" );
 				currentPingEntity.Owner = this;
 				currentPingEntity.WorldPos = traceResult.EndPos;
-				
-				SendPingMessage();
 			}
 		}
 
-		[ClientRpc]
 		void SendPingMessage()
 		{
+			if ( !IsServer )
+				return;
+			
 			string[] pingMessages = new string[]
 			{
 				"Let's go here.", "This looks like a good spot.", "Heading in that direction."
 			};
 			
-			ExtractionChatPanel.AddChatEntry( $"{Name} (PING)", pingRandom.FromArray(pingMessages) );
+			ExtractionChatPanel.AddChatEntry( Player.All, $"{Name} (PING)", pingRandom.FromArray(pingMessages) );
 		}
 	}
 }

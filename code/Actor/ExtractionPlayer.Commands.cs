@@ -79,5 +79,14 @@ namespace Extraction.Actor
 			player.TakeDamage(new DamageInfo() { Damage = damage });
 			Log.Info( $"Damaged the player for {damage}" );
 		}
+
+
+		[ServerCmd( "ping" )]
+		public static void Ping()
+		{
+			var player = GetCommandCaller();
+			player.SetPing();
+			player.SendPingMessage();
+		}
 	}
 }

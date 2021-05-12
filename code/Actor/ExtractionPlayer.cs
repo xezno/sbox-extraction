@@ -71,11 +71,6 @@ namespace Extraction.Actor
 			{
 				Inventory.SetActiveSlot( 2, true );
 			}
-
-			if ( Input.Pressed( ExtractionConfig.Ping ) )
-			{
-				SetPing();
-			}
 		}
 	}
 }
