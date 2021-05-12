@@ -12,9 +12,18 @@ namespace Extraction.Weapons
 {
 	internal partial class BaseExtractionWeapon : BaseWeapon
 	{
+		public enum HoldType
+		{
+			None,
+			Pistol,
+			Rifle
+		}
+		
 		public virtual int Slot => 0;
 		public virtual int ClipSize => 16;
 		public virtual float ReloadTime => 3.0f;
+
+		public virtual HoldType WeaponHoldType => HoldType.Pistol;
 
 		[NetPredicted] public int ReserveAmmo { get; set; }
 		[NetPredicted] public int AmmoClip { get; set; }
@@ -85,6 +94,12 @@ namespace Extraction.Weapons
 				AmmoClip += ReserveAmmo;
 				ReserveAmmo = 0;
 			}
+		}
+		
+		public override void TickPlayerAnimator( PlayerAnimator anim )
+		{
+			anim.SetParam( "holdtype", (int)WeaponHoldType );
+			anim.SetParam( "aimat_weight", 1.0f );
 		}
 
 		[ClientRpc]

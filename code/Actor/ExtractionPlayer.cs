@@ -13,7 +13,7 @@ namespace Extraction.Actor
 
 		public override void Respawn()
 		{
-			SetModel( "models/citizen/citizen.vmdl" );
+			SetModel( ExtractionConfig.PlayerModel );
 			Controller = new Controller();
 			Animator = new ExtractionPlayerAnimator();
 			Camera = new PlayerCamera();

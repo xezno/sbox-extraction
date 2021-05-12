@@ -23,6 +23,7 @@ namespace Extraction.Weapons
 		public override float ReloadTime => 3.0f;
 
 		public override bool AutoFire => false;
+		public override HoldType WeaponHoldType => HoldType.Pistol;
 
 		public override int Slot => 0;
 	}

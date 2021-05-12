@@ -47,7 +47,7 @@ namespace Extraction.UI
 			
 			using ( SceneWorld.SetCurrent( new SceneWorld() ) )
 			{
-				playerPreview = new AnimSceneObject( Model.Load( "models/citizen/citizen.vmdl" ), Transform.Zero );
+				playerPreview = new AnimSceneObject( Model.Load( ExtractionConfig.PlayerModel ), Transform.Zero );
 
 				Light.Point( Vector3.Up * 150.0f, 200.0f, Color.White * 5000.0f );
 				Light.Point( Vector3.Up * 100.0f + Vector3.Forward * 100.0f, 200, Color.White * 15000.0f );
