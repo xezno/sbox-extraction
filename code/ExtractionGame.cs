@@ -15,14 +15,14 @@ namespace Extraction
 			
 			Log.Info( "Game Started" );
 			if (IsServer)
-				extractionHud = new ExtractionHUD();
+				extractionHud = new ExtractionHud();
 		}
 
 		[ServerCmd( "recreatehud", Help = "Recreate hud object" )]
 		public static void RecreateHud()
 		{
 			extractionHud.Delete();
-			extractionHud = new ExtractionHUD();
+			extractionHud = new ExtractionHud();
 			
 			Log.Info( "Recreated HUD" );
 		}

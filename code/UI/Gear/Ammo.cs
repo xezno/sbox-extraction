@@ -31,14 +31,14 @@ namespace Extraction.UI
 			var reserveAmmo = ammoInfo.Item2;
 			
 			if ( currentAmmo < 0 )
-				ammoText.Text = "??";
+				ammoText.Text = "";
 			else
 				ammoText.Text = currentAmmo.ToString("D3");
 
 			if ( reserveAmmo < 0 )
-				reserveAmmoText.Text = "??";
+				reserveAmmoText.Text = "";
 			else
-				reserveAmmoText.Text = reserveAmmo.ToString("D3");
+				reserveAmmoText.Text = reserveAmmo.ToString( "D3" );
 		}
 
 		/// <returns>Current ammo, reserve ammo</returns>

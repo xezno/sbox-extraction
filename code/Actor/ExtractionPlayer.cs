@@ -14,7 +14,7 @@ namespace Extraction.Actor
 		public override void Respawn()
 		{
 			SetModel( ExtractionConfig.PlayerModel );
-			Controller = new Controller();
+			Controller = new ExtractionController();
 			Animator = new ExtractionPlayerAnimator();
 			Camera = new PlayerCamera();
 			EnableAllCollisions = true;

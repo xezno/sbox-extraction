@@ -97,11 +97,11 @@ namespace Extraction.UI
 						playerPreview.SetAnimParam( animParam.Key, vector3AnimValue );
 				}
 				
-				CamAngles.yaw = 180;
+				CamAngles.yaw = 160;
 			}
 			
 			playerPreview.Update( Time.Now - startTime );
-			sceneCapture?.SetCamera( Vector3.Up * 60 + CamAngles.Direction * -65, CamAngles, 30 );
+			sceneCapture?.SetCamera( Vector3.Up * 60 + CamAngles.Direction * -50, CamAngles, 30 );
 		}
 
 		[Event( "hero_change" )] // TODO

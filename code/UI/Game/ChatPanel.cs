@@ -1,5 +1,4 @@
-﻿
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.Hooks;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
@@ -7,18 +6,18 @@ using System;
 
 namespace Sandbox.UI
 {
-	public partial class ExtractionChatPanel : Panel
+	public partial class ChatPanel : Panel
 	{
-		static ExtractionChatPanel Current;
+		static ChatPanel Current;
 
 		public Panel Canvas { get; protected set; }
 		public TextEntry Input { get; protected set; }
 
-		public ExtractionChatPanel()
+		public ChatPanel()
 		{
 			Current = this;
 
-			StyleSheet.Load( "/UI/Game/ExtractionChat.scss" );
+			StyleSheet.Load( "/UI/Game/Chat.scss" );
 
 			Canvas = Add.Panel( "chat_canvas" );
 

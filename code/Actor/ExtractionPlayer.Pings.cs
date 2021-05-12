@@ -48,7 +48,7 @@ namespace Extraction.Actor
 				"Let's go here.", "This looks like a good spot.", "Heading in that direction."
 			};
 			
-			ExtractionChatPanel.AddChatEntry( Player.All, $"{Name} (PING)", pingRandom.FromArray(pingMessages) );
+			ChatPanel.AddChatEntry( Player.All, $"{Name} (PING)", pingRandom.FromArray(pingMessages) );
 		}
 	}
 }

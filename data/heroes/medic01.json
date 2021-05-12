@@ -1,11 +1,11 @@
 {
-  "name": "The Duke",
+  "name": "Kieran",
   "country": "United Kingdom",
-  "bodyType": "Medium",
-  "health": 200,
-  "speed": 335,
-  "class": "Assault",
-  "description": "Duke description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget nibh at est tempus congue ac id ex. Vivamus pretium dolor laoreet, ultricies enim nec, auctor risus. Duis a bibendum dolor.",
+  "bodyType": "Light",
+  "health": 80,
+  "speed": 490,
+  "class": "Medic",
+  "description": "Kieran description blah blah blah",
   "portrait": "ui/extraction/placeholder.png",
 
   "clothing": [

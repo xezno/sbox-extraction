@@ -20,7 +20,7 @@ namespace Extraction.Actor
 				return;
 			
 			// We want to change hero; access Hero directly, change the ID there
-			ExtractionChatPanel.AddInformation( this, $"Hero {newHeroId} selected; this will change when you respawn" );
+			ChatPanel.AddInformation( this, $"Hero {newHeroId} selected; this will change when you respawn" );
 			WishHeroId = newHeroId;
 		}
 		
@@ -36,7 +36,7 @@ namespace Extraction.Actor
 
 			// Don't print the message if we've just spawned in (which is the only case where HeroId should be empty)
 			if ( !string.IsNullOrEmpty(HeroId) )
-				ExtractionChatPanel.AddInformation( Player.All, $"{Name} respawned as {WishHeroId} (was {HeroId})" ); 
+				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {WishHeroId} (was {HeroId})" ); 
 			
 			HeroId = WishHeroId;
 		}

@@ -4,13 +4,13 @@ using Sandbox;
 namespace Extraction.UI
 {
 	[Library]
-	public partial class ExtractionHUD : Hud
+	public partial class ExtractionHud : Hud
 	{
-		private static ExtractionHUD current;
+		private static ExtractionHud current;
 
 		private HeroSelect heroSelect;
 		
-		public ExtractionHUD()
+		public ExtractionHud()
 		{
 			if ( !IsClient ) return;
 

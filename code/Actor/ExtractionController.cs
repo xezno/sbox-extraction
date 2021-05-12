@@ -2,10 +2,10 @@
 
 namespace Extraction.Actor
 {
-	public class Controller : WalkController
+	public class ExtractionController : WalkController
 	{
 		// TODO: Replace with custom controller for wall jumping etc.
-		public Controller() : base()
+		public ExtractionController() : base()
 		{
 			Duck = new Duck( this );
 		}
