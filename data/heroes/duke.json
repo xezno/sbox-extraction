@@ -6,6 +6,7 @@
   "speed": 335,
   "class": "Assault",
   "description": "Lorem ipsum dolor sit amet",
+  "portrait": "ui/extraction/hero-portrait-placeholder.png",
 
   "clothing": [
     "models/citizen_clothes/trousers/trousers.smart.vmdl",

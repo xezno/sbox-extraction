@@ -6,6 +6,7 @@
   "speed": 340,
   "class": "Assault",
   "description": "Lorem ipsum dolor sit amet",
+  "portrait": "ui/extraction/hero-portrait-placeholder.png",
 
   "clothing": [
     "models/citizen_clothes/beards/beard_trucker_brown.vmdl",
