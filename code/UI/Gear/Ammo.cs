@@ -11,6 +11,7 @@ namespace Extraction.UI
 		public Panel ammoImage;
 		public Label ammoText;
 		public Label reserveAmmoText;
+		public Label weaponNameText;
 		public Panel ammoIcon;
 
 		public Ammo()
@@ -21,24 +22,33 @@ namespace Extraction.UI
 			ammoIcon = Add.Panel( "ammo-icon" );
 			ammoText = Add.Label( "30", "ammo-current" );
 			reserveAmmoText = Add.Label( "90", "ammo-reserve" );
+			weaponNameText = Add.Label( "pew pew pew", "weapon-name" );
 		}
 
 		public override void Tick()
 		{
+			var player = Player.Local;
+			if ( player == null ) return;
+
+			if ( player.Inventory.Active is not ExtractionWeapon weapon )
+			{
+				Style.Display = DisplayMode.None;
+				Style.Dirty();
+				return;
+			}
+			
+			Style.Display = DisplayMode.Flex;
+			Style.Dirty();
+			
 			var ammoInfo = GetAmmoInfo();
 			
 			var currentAmmo = ammoInfo.Item1;
 			var reserveAmmo = ammoInfo.Item2;
 			
-			if ( currentAmmo < 0 )
-				ammoText.Text = "";
-			else
-				ammoText.Text = currentAmmo.ToString("D3");
-
-			if ( reserveAmmo < 0 )
-				reserveAmmoText.Text = "";
-			else
-				reserveAmmoText.Text = reserveAmmo.ToString( "D3" );
+			ammoText.Text = currentAmmo.ToString("D3");
+			reserveAmmoText.Text = reserveAmmo.ToString( "D3" );
+			
+			weaponNameText.Text = weapon.WeaponName;
 		}
 
 		/// <returns>Current ammo, reserve ammo</returns>
@@ -48,7 +58,7 @@ namespace Extraction.UI
 			if ( player == null ) return (-1, -1);
 			if ( player.Inventory?.Active == null ) return (-1, -1);
 			
-			if ( player.Inventory.Active is BaseExtractionWeapon weapon )
+			if ( player.Inventory.Active is ExtractionWeapon weapon )
 			{
 				return (weapon.AmmoClip, weapon.AvailableAmmo());
 			}

@@ -6,6 +6,7 @@ namespace Extraction
 {
 	public class ExtractionPlayerAnimator : StandardPlayerAnimator
 	{
+		// Keep track of state so that we can use it in multiple places at once (i.e. hero portrait)
 		public Dictionary<string, object> Params { get; } = new();
 		
 		public override void SetParam( string name, bool val )
@@ -38,6 +39,7 @@ namespace Extraction
 		
 		public override void Trigger( string name )
 		{
+			// SetParam( name, true );
 			base.SetParam( name, true ); // HACK: Don't go thru setParam otherwise jump looks weird in portrait 
 		}
 	}

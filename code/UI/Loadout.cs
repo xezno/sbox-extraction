@@ -5,33 +5,36 @@ using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
+// TODO: Improvements - make dirty flag work, make UI dynamic
+
 namespace Extraction.UI
 {
 	public class Loadout : Panel
 	{
-		private static Loadout Current;
+		public static Loadout Current { get; private set; }
 		public List<Label> loadoutTexts = new List<Label>();
+
+		private bool inventoryDirty = false;
 
 		public Loadout()
 		{
-			SetClass( "health", true );
+			SetClass( "loadout", true );
 
-			OnLoadoutUpdate();
-			
+			inventoryDirty = true;
 			Current = this;
-		}
-
-		public static void OnLoadoutUpdate()
-		{
-			Current?.UpdateLoadout();
+			
+			Event.Register( this );
 		}
 
 		private void UpdateLoadout()
 		{
+			if (!inventoryDirty)
+				return;
+			
 			foreach ( var label in loadoutTexts )
 				label.Delete();
-			
-			loadoutTexts.Clear();
+
+			loadoutTexts = new();
 
 			var inventory = Player.Local.Inventory;
 
@@ -39,18 +42,31 @@ namespace Extraction.UI
 			{
 				var inventoryItem = inventory.GetSlot( i );
 
-				if ( inventoryItem is BaseExtractionWeapon weapon )
+				if ( inventoryItem is ExtractionWeapon weapon )
 				{
-					Log.Info( weapon.EntityName );
-					loadoutTexts.Add( Add.Label( weapon.EntityName ) );	
+					var weaponStr = $"{i+1} {weapon.WeaponName ?? "Shit"}";
+					
+					var label = Add.Label( weaponStr );
+					loadoutTexts.Add( label );	
 				}
 			}
+
+			inventoryDirty = false;
+		}
+
+		[Event( "extraction.player.loadoutChange" )]
+		public void InventoryChange()
+		{
+			Log.Info( "Marked inventory as dirty" );
+			inventoryDirty = true;
 		}
 
 		public override void Tick()
 		{
 			var player = Player.Local as ExtractionPlayer;
 			if ( player == null ) return;
+			
+			UpdateLoadout();
 		}
 	}
 }

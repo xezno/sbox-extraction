@@ -17,7 +17,7 @@ namespace Sandbox.UI
 		{
 			Current = this;
 
-			StyleSheet.Load( "/UI/Game/Chat.scss" );
+			StyleSheet.Load( "/UI/Game/ChatPanel.scss" );
 
 			Canvas = Add.Panel( "chat_canvas" );
 
@@ -27,7 +27,7 @@ namespace Sandbox.UI
 			Input.AcceptsFocus = true;
 			Input.AllowEmojiReplace = true;
 
-			Sandbox.Hooks.Chat.OnOpenChat += Open;
+			Chat.OnOpenChat += Open;
 		}
 
 		void Blur()

@@ -23,7 +23,7 @@ label {
   right: 0;
   padding: 50px;
 
-  health, ammo, heroportrait {
+  health, ammo, heroportrait, loadout {
     color: black;
     padding: 10px 15px;
     background-color: white;
@@ -39,7 +39,6 @@ label {
   width: 32px;
   height: 32px;
 
-  margin-top: 4px;
   margin-right: 8px;
 
   background-size: 100%;
@@ -47,6 +46,7 @@ label {
 
 
 health {
+  align-items: center;
   width: 135px;
   
   .health-icon {
@@ -54,16 +54,31 @@ health {
   }
 }
 
+loadout {
+  position: absolute;
+  right: 50px;
+  bottom: 200px;
+  flex-direction: column;
+}
+
 ammo {
   position: absolute;
   right: 50px;
   bottom: 50px;
+  align-items: center;
 
   .ammo-reserve {
     font-size: 24px;
     font-weight: 600;
     
     margin-left: 8px;
+  }
+  
+  .weapon-name {
+    font-size: 24px;
+    font-weight: 700;
+
+    margin-left: 8px;    
   }
   
   .ammo-icon {

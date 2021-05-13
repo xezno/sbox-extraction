@@ -14,10 +14,14 @@ namespace Extraction.Actor
 			return player;
 		}
 		
-		[ServerCmd( "togglethirdperson", Help = "Toggles the third person camera" )]
+		#region Debug
+		[ServerCmd( "togglethirdperson", Help = "(DEBUG) Toggles the third person camera" )]
 		public static void SwitchCamera()
 		{
 			var player = GetCommandCaller();
+			if (!player.HasPermission("thirdperson"))
+				return;
+			
 			Log.Info( "Toggled third person mode" );
 			if ( player.Camera.GetType() == typeof( PlayerCamera ) )
 			{
@@ -28,6 +32,32 @@ namespace Extraction.Actor
 				player.Camera = new PlayerCamera();
 			}
 		}
+
+		[ServerCmd( "setammo", Help = "(DEBUG) Sets player reserve ammo amount" )]
+		public static void SetAmmo(int newAmmo)
+		{	
+			var player = GetCommandCaller();
+			if (!player.HasPermission("setammo"))
+				return;
+			
+			if ( player.Inventory.Active is ExtractionWeapon weapon )
+			{
+				weapon.ReserveAmmo = newAmmo;
+			}
+			Log.Info( $"Set reserve ammo to {newAmmo}" );
+		}
+
+		[ServerCmd( "damage", Help = "(DEBUG) Damage the player" )]
+		public static void DoDamage(int damage = 10)
+		{
+			var player = GetCommandCaller();
+			if (!player.HasPermission("dodamage"))
+				return;
+			
+			player.TakeDamage(new DamageInfo() { Damage = damage });
+			Log.Info( $"Damaged the player for {damage}" );
+		}
+		#endregion
 
 		[ServerCmd( "sethero", Help = "Set player hero" )]
 		public static void SetHero( string hero = "duke" )
@@ -61,27 +91,7 @@ namespace Extraction.Actor
 			Log.Info( $"Set sprint FOV multiplier to {ExtractionConfig.SprintFieldOfView}" );
 		}
 
-		[ServerCmd( "setammo", Help = "Sets player reserve ammo amount" )]
-		public static void SetAmmo(int newAmmo)
-		{
-			var player = GetCommandCaller();
-			if ( player.Inventory.Active is BaseExtractionWeapon weapon )
-			{
-				weapon.ReserveAmmo = newAmmo;
-			}
-			Log.Info( $"Set reserve ammo to {newAmmo}" );
-		}
-
-		[ServerCmd( "damage", Help = "Damage the player" )]
-		public static void DoDamage(int damage = 10)
-		{
-			var player = GetCommandCaller();
-			player.TakeDamage(new DamageInfo() { Damage = damage });
-			Log.Info( $"Damaged the player for {damage}" );
-		}
-
-
-		[ServerCmd( "ping" )]
+		[ServerCmd( "ping", Help = "Ping a location for your teammates" )]
 		public static void Ping()
 		{
 			var player = GetCommandCaller();

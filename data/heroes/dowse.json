@@ -3,7 +3,7 @@
   "country": "England",
   "bodyType": "Heavy",
   "health": 170,
-  "speed": 340,
+  "speed": 275,
   "class": "Assault",
   "description": "Dowse description, Sed aliquam mauris vel lacus tincidunt, id dapibus lacus sagittis. Ut aliquam tristique interdum. Quisque sed neque vel quam porttitor aliquam a sed nulla.",
   "portrait": "ui/extraction/placeholder.png",

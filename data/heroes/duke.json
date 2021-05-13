@@ -3,7 +3,7 @@
   "country": "United Kingdom",
   "bodyType": "Medium",
   "health": 200,
-  "speed": 335,
+  "speed": 270,
   "class": "Assault",
   "description": "Duke description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget nibh at est tempus congue ac id ex. Vivamus pretium dolor laoreet, ultricies enim nec, auctor risus. Duis a bibendum dolor.",
   "portrait": "ui/extraction/placeholder.png",

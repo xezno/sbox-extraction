@@ -1,0 +1,23 @@
+﻿interactpanel {
+  width: 100%;
+
+  color: white;
+  z-index: 10;
+
+  padding: 50px;
+
+  flex-direction: column;
+
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 600;
+  
+  align-items: center;
+  justify-content: center;
+  
+  text-shadow: 0 0 20px rgba( black, 0.8 );
+  
+  label {
+    margin-top: 100px;
+  }
+}

@@ -10,7 +10,7 @@ using Sandbox.ScreenShake;
  */
 namespace Extraction.Weapons
 {
-	internal partial class BaseExtractionWeapon : BaseWeapon
+	internal partial class ExtractionWeapon : BaseWeapon
 	{
 		public enum HoldType
 		{
@@ -22,6 +22,18 @@ namespace Extraction.Weapons
 		public virtual int Slot => 0;
 		public virtual int ClipSize => 16;
 		public virtual float ReloadTime => 3.0f;
+		public virtual string WeaponName { get; set; }
+		public virtual string ShotSound => "rust_pistol.shoot";
+		public virtual string DryFireSound => "pistol-dryfire";
+		public virtual string ShootParticles => "particles/pistol_muzzleflash.vpcf";
+		public virtual float Spread => 0.05f;
+		public virtual float Force => 1.5f;
+		public virtual float Damage => 9.0f;
+		public virtual float BulletSize => 3.0f;
+		public virtual int ShotCount => 1; // How many bullets to shoot per shot - e.g. 1 for pistol, 8 for shotty
+		public virtual string WorldModelPath => "weapons/rust_smg/rust_smg.vmdl";
+
+		public virtual bool AutoFire => false;
 
 		public virtual HoldType WeaponHoldType => HoldType.Pistol;
 
@@ -30,8 +42,61 @@ namespace Extraction.Weapons
 		[NetPredicted] public TimeSince TimeSinceReload { get; set; }
 		[NetPredicted] public bool IsReloading { get; set; }
 		[NetPredicted] public TimeSince TimeSinceDeployed { get; set; }
-
+		
 		public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
+		
+		public override void Spawn()
+		{
+			base.Spawn();
+
+			SetModel( WorldModelPath );
+			AmmoClip = ClipSize;
+			ReserveAmmo = AmmoClip * 4;
+		}
+		
+		public override bool CanPrimaryAttack()
+		{
+			var hasAmmo = AmmoClip > 0;
+			var canAutoFire = AutoFire && hasAmmo; // Prevent the gun from spamming dry sounds
+			
+			var playerIsShooting =
+				(canAutoFire && Owner.Input.Down( InputButton.Attack1 )) || Owner.Input.Pressed( InputButton.Attack1 );
+
+			var playerIsAlive = Owner.Health > 0;
+			
+			var gunCanFire = (PrimaryRate <= 0) || (TimeSincePrimaryAttack > (1 / PrimaryRate));
+
+
+			return playerIsShooting && gunCanFire && playerIsAlive;
+		}
+		
+		
+		public override void AttackPrimary()
+		{
+			TimeSincePrimaryAttack = 0;
+			TimeSinceSecondaryAttack = 0;
+
+			if ( !TakeAmmo( ShotCount ) )
+			{
+				Log.Info( AmmoClip.ToString() );
+				DryFire();
+				return;
+			}
+
+			if ( AmmoClip <= 3 && ClipSize > 3 )
+			{
+				// Nearing end of clip - alert player
+				PlaySound( "pistol-dryfire" );	
+			}
+			
+			ShootEffects();
+			PlaySound( ShotSound );
+
+			for ( var i = 0; i < ShotCount; ++i )
+			{
+				ShootBullet( Spread, Force, Damage, BulletSize );
+			}
+		}
 
 		public int AvailableAmmo()
 		{
@@ -117,7 +182,9 @@ namespace Extraction.Weapons
 
 		public override void AttackSecondary()
 		{
-			// ADS
+			base.AttackSecondary();
+			return;
+			// TODO: ADS
 			Log.Info( "Secondary Attack" );
 			
 			AimDownSights();
@@ -130,55 +197,12 @@ namespace Extraction.Weapons
 			ViewModelEntity.LocalPos = new Vector3( 0, 0.5f, 0 );
 		}
 
-		public override void AttackPrimary()
-		{
-			TimeSincePrimaryAttack = 0;
-			TimeSinceSecondaryAttack = 0;
-
-			//
-			// Tell the clients to play the shoot effects
-			//
-			ShootEffects();
-
-			//
-			// ShootBullet is coded in a way where we can have bullets pass through shit
-			// or bounce off shit, in which case it'll return multiple results
-			//
-			foreach ( var tr in TraceBullet( Owner.EyePos, Owner.EyePos + Owner.EyeRot.Forward * 5000 ) )
-			{
-				tr.Surface.DoBulletImpact( tr );
-
-				if ( !IsServer )
-				{
-					continue;
-				}
-
-				if ( !tr.Entity.IsValid() )
-				{
-					continue;
-				}
-
-				//
-				// We turn predictiuon off for this, so aany exploding effects don't get culled etc
-				//
-				using ( Prediction.Off() )
-				{
-					var damage = DamageInfo.FromBullet( tr.EndPos, Owner.EyeRot.Forward * 100, 15 )
-						.UsingTraceResult( tr )
-						.WithAttacker( Owner )
-						.WithWeapon( this );
-
-					tr.Entity.TakeDamage( damage );
-				}
-			}
-		}
-
 		[ClientRpc]
 		protected virtual void ShootEffects()
 		{
 			Host.AssertClient();
 
-			Particles.Create( "particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle" );
+			Particles.Create( ShootParticles, EffectEntity, "muzzle" );
 
 			if ( Owner == Player.Local )
 			{
@@ -245,7 +269,7 @@ namespace Extraction.Weapons
 		[ClientRpc]
 		public virtual void DryFire()
 		{
-			PlaySound( "pistol-dryfire" );
+			PlaySound( DryFireSound );
 		}
 
 		public override void CreateViewModel()

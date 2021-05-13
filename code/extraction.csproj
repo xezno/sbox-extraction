@@ -35,4 +35,8 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="UI\Game\GamePanel.cs" />
+  </ItemGroup>
+
 </Project>

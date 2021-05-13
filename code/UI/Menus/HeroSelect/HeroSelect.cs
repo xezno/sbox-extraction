@@ -11,7 +11,6 @@ namespace Extraction.UI.Menus
 		public Label titleText; // TODO: Generic extraction menu class
 		public List<HeroCard> heroCards;
 		
-		private readonly string[] heroesToDisplay = new[] { "dowse", "duke" };
 		public HeroSelect()
 		{
 			StyleSheet.Load( "/UI/Menus/HeroSelect/HeroSelect.scss" );
@@ -20,7 +19,6 @@ namespace Extraction.UI.Menus
 			
 			titleText = Add.Label( "Select a Hero", "title");
 			
-			// BUG: Potential race condition
 			foreach ( var hero in HeroCollection.HeroDatas )
 			{
 				var heroCard = AddChild<HeroCard>();

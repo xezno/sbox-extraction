@@ -1,4 +1,5 @@
-﻿using Extraction.Hero;
+﻿using System;
+using Extraction.Hero;
 using Sandbox;
 using Sandbox.UI;
 
@@ -14,6 +15,7 @@ namespace Extraction.Actor
 
 		public HeroData HeroData => HeroCollection.HeroDatas[HeroId];
 
+		// Called when the player decides they want to switch to a different hero
 		public void ChangeHero( string newHeroId )
 		{
 			if ( !HeroCollection.HeroDatas.ContainsKey( newHeroId ) )
@@ -24,6 +26,7 @@ namespace Extraction.Actor
 			WishHeroId = newHeroId;
 		}
 		
+		// Called when the player actually spawns in as a new hero
 		public void SetupHero()
 		{
 			// Now that we have the ID, lets set up the hero data
@@ -36,9 +39,26 @@ namespace Extraction.Actor
 
 			// Don't print the message if we've just spawned in (which is the only case where HeroId should be empty)
 			if ( !string.IsNullOrEmpty(HeroId) )
-				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {WishHeroId} (was {HeroId})" ); 
-			
+				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {WishHeroId} (was {HeroId})" );
+
 			HeroId = WishHeroId;
+			
+			// I want to bang my head against a wall.
+			SetHeroControllerProperties();
+		}
+
+		private void SetHeroControllerProperties()
+		{
+			if ( Controller is ExtractionController controller )
+			{
+				// Do we even need walking??
+				// TODO: Remove walking when the new pawn stuff gets pushed
+				
+				controller.WalkSpeed = HeroData.Speed * .5f;
+				controller.DefaultSpeed = HeroData.Speed * .5f;
+				controller.SprintSpeed = HeroData.Speed;
+				Log.Info( $"Setting walk speed to {controller.WalkSpeed} {IsServer}" );
+			}
 		}
 	}
 }

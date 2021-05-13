@@ -10,7 +10,6 @@ TODO Controls:
 - Need quick menu bind??
 
 TODO UI:
-- Loadout viz
 - Health bar
 - Ability viz
 - Change hero portrait when hero switched
@@ -30,6 +29,7 @@ TODO Bugs:
 - Prevent sprint & firing at same time
     
 TODO Weapons:
+- Load weapons from JSON
 - Shotguns
 - Melee
 - Burst fire weapons

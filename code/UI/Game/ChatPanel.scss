@@ -6,7 +6,7 @@
 	z-index: 100;
 	flex-direction: column;
 	width: 500px;
-	font-family: Roboto;
+	font-family: Inter;
 	font-size: 13px;
 	padding: 5px;
 	text-shadow: 0 0 25px rgba( black, 0.8 );
@@ -67,13 +67,21 @@ chatentry
 		padding-right: 10px;
 		font-weight: 600;
 		font-size: 14px;
-		color: #6bc1ff;
+		color: #82c8ff;
 		flex-shrink: 0;
+	}
+	
+	.name-friendly {
+		color: #82c8ff;		
+	}
+	
+	.name-enemy {
+		color: #ff8282;
 	}
 
 	.message
 	{
-		color: #ccc;
+		color: white;
 		font-size: 14px;
 		flex-grow: 1;
 	}

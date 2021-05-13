@@ -4,8 +4,9 @@
 namespace Extraction.Weapons
 {
 	[Library( "ex_pistol", Title = "Pistol" )]
-	internal class Pistol : GenericGun
+	internal class Pistol : ExtractionWeapon
 	{
+		public override string WeaponName => "Caulden";
 		public override string ShotSound => "rust_pistol.shoot";
 		public override float Spread => 0.05f;
 		public override float Force => 1.5f;

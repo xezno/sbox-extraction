@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Extraction.Actor;
 using Sandbox;
 
 namespace Extraction.Camera
@@ -7,9 +8,7 @@ namespace Extraction.Camera
 	public class PlayerCamera : FirstPersonCamera
 	{
 		private Vector3 lastPos;
-		
-		// High speed cutoff for FOV change
-		private const float HighSpeed = 300f*300f;
+		private int FovThreshold = 20;
 		
 		public override void Activated()
 		{
@@ -34,11 +33,19 @@ namespace Extraction.Camera
 
 		private void ApplyFov()
 		{
-			var player = Player.Local;
+			var player = Player.Local as ExtractionPlayer;
+			var playerController = player.GetActiveController() as ExtractionController;
+			
+			if ( player == null ) return;
+			if ( playerController == null ) return;
 			
 			float targetFov = ExtractionConfig.FieldOfView;
-			if ( player.Velocity.WithZ( 0 ).LengthSquared > HighSpeed ) // Length^2 is faster than Length
+			// Log.Info( $"{player.Velocity.WithZ( 0 ).Length}" );
+			
+			if ( player.Velocity.WithZ( 0 ).Length >= player.HeroData.Speed - FovThreshold ) // TODO: Length^2 is faster than Length
+			{
 				targetFov = ExtractionConfig.SprintFieldOfView;
+			}
 
 			FieldOfView = FieldOfView.LerpTo( targetFov , 10.0f * Time.Delta, false );
 		}

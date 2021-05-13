@@ -1,0 +1,24 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "tools_generic.vfx"
+
+	//---- Translucent ----
+	F_TRANSLUCENT 1
+
+	//---- Color ----
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[4.000 4.000]"
+	TextureColor "E:/Games/SteamLibrary/steamapps/common/sbox/addons/extraction/materials/editor/tools/objective.png"
+
+	//---- Translucent ----
+	g_flOpacityScale "1.000"
+	TextureTranslucency "[0.500000 0.500000 0.500000 0.000000]"
+
+	SystemAttributes
+	{
+		PhysicsSurfaceProperties "objective"
+	}
+}

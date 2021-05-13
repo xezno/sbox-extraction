@@ -3,15 +3,28 @@
   "country": "United Kingdom",
   "bodyType": "Light",
   "health": 80,
-  "speed": 490,
+  "speed": 450,
   "class": "Medic",
   "description": "Kieran description blah blah blah",
   "portrait": "ui/extraction/placeholder.png",
 
+  "abilities": [
+    {
+      "type": "entity",
+      "entity_name": "ent_healthstation"
+    },
+    {
+      "type": "entity",
+      "entity_name": "ent_healthstation"
+    }
+  ],
+
   "clothing": [
-    "models/citizen_clothes/trousers/trousers.smart.vmdl",
-    "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-    "models/citizen_clothes/shoes/shoes.smartbrown.vmdl",
-    "models/citizen_clothes/beards/beard_trucker_brown.vmdl"
+    "models/citizen_clothes/hair/hair_malestyle03.vmdl",
+    "models/citizen_clothes/shirt/shirt_shortsleeve.plain.vmdl",
+    "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
+    "models/citizen_clothes/jacket/labcoat.vmdl",
+    "models/citizen_clothes/trousers/trousers.lab.vmdl",
+    "models/citizen_clothes/shoes/shoes.police.vmdl"
   ]
 }

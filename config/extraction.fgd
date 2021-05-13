@@ -1,0 +1,11 @@
+@PointClass editormodel( "models/editor/citizen_v2_staging_blue.vmdl" ) = ext_team_spawn_a : "Spawn point for team A"
+[
+]
+
+@PointClass editormodel( "models/editor/citizen_v2_staging_red.vmdl" ) = ext_team_spawn_b : "Spawn point for team B"
+[
+]
+
+@SolidClass = ext_no_gadget_zone : "Zone that prevents the use of gadgets"
+[
+]

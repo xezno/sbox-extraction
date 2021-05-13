@@ -10,6 +10,8 @@ namespace Extraction.UI
 		public GamePanel()
 		{
 			AddChild<ChatPanel>();
+			AddChild<InteractPanel>();
+			// AddChild<PingPanel>();
 		}	
 	}
 }
