@@ -22,10 +22,9 @@ namespace Extraction.Actor
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
 			
+			SetupHero();
 			SetupInventory();
 
-			SetupHero();
-			
 			base.Respawn();
 		}
 		
