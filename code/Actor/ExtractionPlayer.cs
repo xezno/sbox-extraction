@@ -24,15 +24,6 @@ namespace Extraction.Actor
 
 			SetupHero();
 			
-			Inventory = new ExtractionInventory( this ); // Clear
-
-			foreach ( string item in HeroData.Loadout )
-			{
-				Inventory.Add( Entity.Create( item ) );
-			}
-			
-			Dress();
-			
 			base.Respawn();
 		}
 

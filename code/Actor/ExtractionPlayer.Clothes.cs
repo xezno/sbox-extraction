@@ -22,7 +22,7 @@ namespace Extraction.Actor
 			dressed = false;
 		}
 		
-		public void Dress()
+		public void SetHeroClothing()
 		{
 			if ( dressed )
 				Undress();

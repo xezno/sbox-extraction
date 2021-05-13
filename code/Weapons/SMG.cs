@@ -13,8 +13,8 @@ namespace Extraction.Weapons
 		public override float BulletSize => 3.0f;
 		public override int ShotCount => 1;
 
-		public override string ViewModelPath => "weapons/rust_smg/v_rust_smg.vmdl";
-		public override string WorldModelPath => "weapons/rust_smg/rust_smg.vmdl";
+		public override string ViewModelPath => "models/v_hk_mp5sd.vmdl";
+		public override string WorldModelPath => "models/hk_mp5sd.vmdl";
 
 		public override int ClipSize => 30;
 
