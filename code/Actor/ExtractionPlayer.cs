@@ -21,10 +21,23 @@ namespace Extraction.Actor
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
+			
+			SetupInventory();
 
 			SetupHero();
 			
 			base.Respawn();
+		}
+		
+		private void SetupInventory()
+		{
+			Inventory.DeleteContents();
+
+			for ( int i = 0; i < HeroData.Loadout.Length; i++ )
+			{
+				string item = HeroData.Loadout[i];
+				Inventory.Add( Entity.Create( item ), i == 0 );
+			}
 		}
 
 		public override void OnKilled()

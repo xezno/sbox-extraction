@@ -48,18 +48,7 @@ namespace Extraction.Actor
 			HeroId = WishHeroId;
 			
 			SetHeroControllerProperties();
-			SetHeroInventory();
 			SetHeroClothing();
-		}
-
-		private void SetHeroInventory()
-		{
-			Inventory.DeleteContents();
-
-			foreach ( string item in HeroData.Loadout )
-			{
-				Inventory.Add( Entity.Create( item ) );
-			}
 		}
 
 		/// Set up new hero stuff
