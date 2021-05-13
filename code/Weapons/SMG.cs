@@ -2,7 +2,7 @@
 
 namespace Extraction.Weapons
 {
-	[Library( "ex_smg", Title = "SMG" )]
+	[Library( "ext_smg", Title = "SMG" )]
 	internal class SMG : ExtractionWeapon
 	{
 		public override string WeaponName => "KEK-10";

@@ -31,6 +31,7 @@ namespace Extraction.Weapons
 		public virtual float Damage => 9.0f;
 		public virtual float BulletSize => 3.0f;
 		public virtual int ShotCount => 1; // How many bullets to shoot per shot - e.g. 1 for pistol, 8 for shotty
+		public virtual float TimeBetweenShots => 0; // For burst fire n stuff
 		public virtual string WorldModelPath => "weapons/rust_smg/rust_smg.vmdl";
 
 		public virtual bool AutoFire => false;
@@ -56,15 +57,18 @@ namespace Extraction.Weapons
 		
 		public override bool CanPrimaryAttack()
 		{
-			var hasAmmo = AmmoClip > 0;
-			var canAutoFire = AutoFire && hasAmmo; // Prevent the gun from spamming dry sounds
+			bool canAutoFire;
+			{
+				bool hasAmmo = AmmoClip > 0;
+				canAutoFire = AutoFire && hasAmmo; // Prevent the gun from spamming dry sounds
+			}
 			
-			var playerIsShooting =
+			bool playerIsShooting =
 				(canAutoFire && Owner.Input.Down( InputButton.Attack1 )) || Owner.Input.Pressed( InputButton.Attack1 );
 
-			var playerIsAlive = Owner.Health > 0;
+			bool playerIsAlive = Owner.Health > 0;
 			
-			var gunCanFire = (PrimaryRate <= 0) || (TimeSincePrimaryAttack > (1 / PrimaryRate));
+			bool gunCanFire = (PrimaryRate <= 0) || (TimeSincePrimaryAttack > (1 / PrimaryRate));
 
 
 			return playerIsShooting && gunCanFire && playerIsAlive;
@@ -76,7 +80,7 @@ namespace Extraction.Weapons
 			TimeSincePrimaryAttack = 0;
 			TimeSinceSecondaryAttack = 0;
 
-			if ( !TakeAmmo( ShotCount ) )
+			if ( !TakeAmmo( 1 ) )
 			{
 				Log.Info( AmmoClip.ToString() );
 				DryFire();
@@ -92,7 +96,7 @@ namespace Extraction.Weapons
 			ShootEffects();
 			PlaySound( ShotSound );
 
-			for ( var i = 0; i < ShotCount; ++i )
+			for ( int i = 0; i < ShotCount; ++i )
 			{
 				ShootBullet( Spread, Force, Damage, BulletSize );
 			}
@@ -206,7 +210,7 @@ namespace Extraction.Weapons
 
 			if ( Owner == Player.Local )
 			{
-				new Perlin();
+				_ = new Perlin();
 			}
 
 			ViewModelEntity?.SetAnimParam( "fire", true );
@@ -218,39 +222,31 @@ namespace Extraction.Weapons
 		/// </summary>
 		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize )
 		{
-			var forward = Owner.EyeRot.Forward;
+			Vector3 forward = Owner.EyeRot.Forward;
 			forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
 			forward = forward.Normal;
 
-			//
 			// ShootBullet is coded in a way where we can have bullets pass through shit
 			// or bounce off shit, in which case it'll return multiple results
-			//
-			foreach ( var tr in TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize ) )
+			foreach ( var traceResult in TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize ) )
 			{
-				tr.Surface.DoBulletImpact( tr );
+				traceResult.Surface.DoBulletImpact( traceResult );
 
 				if ( !IsServer )
-				{
 					continue;
-				}
 
-				if ( !tr.Entity.IsValid() )
-				{
+				if ( !traceResult.Entity.IsValid() )
 					continue;
-				}
 
-				//
-				// We turn predictiuon off for this, so any exploding effects don't get culled etc
-				//
+				// We turn prediction off for this, so any exploding effects don't get culled etc
 				using ( Prediction.Off() )
 				{
-					var damageInfo = DamageInfo.FromBullet( tr.EndPos, forward * 100 * force, damage )
-						.UsingTraceResult( tr )
+					var damageInfo = DamageInfo.FromBullet( traceResult.EndPos, forward * 100 * force, damage )
+						.UsingTraceResult( traceResult )
 						.WithAttacker( Owner )
 						.WithWeapon( this );
 
-					tr.Entity.TakeDamage( damageInfo );
+					traceResult.Entity.TakeDamage( damageInfo );
 				}
 			}
 		}

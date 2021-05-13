@@ -22,12 +22,15 @@ namespace Extraction.Actor
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
 
-			Inventory = new ExtractionInventory( this ); // Clear
-			
-			Inventory.Add( new SMG(), true );
-			Inventory.Add( new Pistol(), false );
-			
 			SetupHero();
+			
+			Inventory = new ExtractionInventory( this ); // Clear
+
+			foreach ( string item in HeroData.Loadout )
+			{
+				Inventory.Add( Entity.Create( item ) );
+			}
+			
 			Dress();
 			
 			base.Respawn();

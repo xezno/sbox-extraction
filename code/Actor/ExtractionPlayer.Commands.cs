@@ -8,10 +8,8 @@ namespace Extraction.Actor
 	{
 		private static ExtractionPlayer GetCommandCaller()
 		{
-			var target = ConsoleSystem.Caller;
-			var player = ((ExtractionPlayer)target);
-
-			return player;
+			ExtractionPlayer target = ConsoleSystem.Caller as ExtractionPlayer;
+			return target;
 		}
 		
 		#region Debug

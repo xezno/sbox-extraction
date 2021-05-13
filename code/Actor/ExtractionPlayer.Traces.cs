@@ -22,13 +22,13 @@ namespace Extraction.Actor
 
 			start += (Vector3.Up * 1f);
 
-			var tr = Trace.Ray( start, end )
+			var traceResult = Trace.Ray( start, end )
 				.Size( mins, maxs )
 				.HitLayer( layer )
 				.Ignore( Player.Local )
 				.Run();
 			
-			return tr;
+			return traceResult;
 		}
 		
 		// Do a trace for stuff like interactions etc.

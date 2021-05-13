@@ -9,6 +9,11 @@
   "portrait": "ui/extraction/placeholder.png",
   "doesObjectivesFast": true,
 
+  "loadout": [
+    "ext_smg",
+    "ext_pistol"
+  ],
+
   "abilities": [
     {
       "type": "entity",

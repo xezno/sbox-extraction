@@ -9,14 +9,14 @@ namespace Extraction
 
 		public override bool SetActiveSlot( int i, bool evenIfEmpty = false )
 		{
-			var val = base.SetActiveSlot( i, evenIfEmpty );
+			bool val = base.SetActiveSlot( i, evenIfEmpty );
 			Event.Run( "extraction.player.loadoutChange" );
 			return val;
 		}
 
 		public override bool SetActive( Entity ent )
 		{
-			var val = base.SetActive( ent );
+			bool val = base.SetActive( ent );
 			Event.Run( "extraction.player.loadoutChange" );
 			return val;
 		}

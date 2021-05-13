@@ -4,7 +4,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System;
 
-namespace Sandbox.UI
+namespace Extraction.UI
 {
 	public partial class ChatPanel : Panel
 	{
@@ -53,7 +53,7 @@ namespace Sandbox.UI
 		{
 			Close();
 
-			var msg = Input.Text.Trim();
+			string msg = Input.Text.Trim();
 			Input.Text = "";
 
 			if ( string.IsNullOrWhiteSpace( msg ) )
@@ -64,14 +64,14 @@ namespace Sandbox.UI
 
 		public void AddEntry( string name, string message, string avatar )
 		{
-			var e = Canvas.AddChild<ChatEntry>();
+			var entry = Canvas.AddChild<ChatEntry>();
 			//e.SetFirstSibling();
-			e.Message.Text = message;
-			e.NameLabel.Text = name;
-			e.Avatar.SetTexture( avatar );
+			entry.Message.Text = message;
+			entry.NameLabel.Text = name;
+			entry.Avatar.SetTexture( avatar );
 
-			e.SetClass( "noname", string.IsNullOrEmpty( name ) );
-			e.SetClass( "noavatar", string.IsNullOrEmpty( avatar ) );
+			entry.SetClass( "noname", string.IsNullOrEmpty( name ) );
+			entry.SetClass( "noavatar", string.IsNullOrEmpty( avatar ) );
 		}
 
 

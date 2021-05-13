@@ -12,7 +12,7 @@ namespace Extraction.Actor
 		public void Undress()
 		{
 			// 😳
-			foreach ( var clothingItem in clothes )
+			foreach ( ModelEntity clothingItem in clothes )
 			{
 				clothingItem.Delete();
 			}
@@ -27,7 +27,7 @@ namespace Extraction.Actor
 			if ( dressed )
 				Undress();
 
-			foreach ( var clothingItem in HeroData.Clothing )
+			foreach ( string clothingItem in HeroData.Clothing )
 			{
 				var temp = new ModelEntity();
 				temp.SetModel( clothingItem );

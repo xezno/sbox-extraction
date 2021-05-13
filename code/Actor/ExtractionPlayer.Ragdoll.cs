@@ -15,7 +15,7 @@ namespace Extraction.Actor
 		{
 			// TODO - lets not make everyone write this shit out all the time
 			// maybe a CreateRagdoll<T>() on ModelEntity?
-			var ent = new ModelEntity();
+			ModelEntity ent = new();
 			ent.WorldPos = WorldPos;
 			ent.WorldRot = WorldRot;
 			ent.MoveType = MoveType.Physics;
@@ -31,15 +31,15 @@ namespace Extraction.Actor
 			ent.DeleteAsync( 20.0f );
 
 			// Copy the clothes over
-			foreach ( var child in Children )
+			foreach ( Entity child in Children )
 			{
 				if ( child is ModelEntity e )
 				{
-					var model = e.GetModelName();
+					string model = e.GetModelName();
 					if ( model != null && !model.Contains( "clothes" ) ) // Uck we 're better than this, entity tags, entity type or something?
 						continue;
 
-					var clothing = new ModelEntity();
+					ModelEntity clothing = new();
 					clothing.SetModel( model );
 					clothing.SetParent( ent, true );
 				}

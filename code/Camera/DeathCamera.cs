@@ -25,13 +25,8 @@ namespace Extraction.Camera
 			Vector3 targetPos = FocusPoint + GetViewOffset();
 			
 			// Col: cast ray from focus point to target
-			var trace = Trace.Ray( FocusPoint, targetPos ).Radius( boxSize ).WorldOnly();
-			var traceResult = trace.Run();
-			if ( traceResult.Hit )
-			{
-				// Hit? Shift camera away from wall
-				targetPos = traceResult.EndPos;
-			}
+			var traceResult = Trace.Ray( FocusPoint, targetPos ).Radius( boxSize ).WorldOnly().Run();
+			targetPos = traceResult.EndPos; // Shift camera away from wall
 			
 			// Set positions
 			Pos = targetPos;

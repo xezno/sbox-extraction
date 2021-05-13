@@ -8,21 +8,16 @@ namespace Extraction.Hero
 	{
 		public static Dictionary<string, HeroData> HeroDatas = new ();
 
+		[ServerCmd( "reloadherodata" )]
 		public static void Load()
 		{
 			HeroDatas = new();
 			foreach ( var file in FileSystem.Mounted.FindFile( "/data/heroes", "*.json" ) )
 			{
-				var rawFileName = Path.GetFileNameWithoutExtension( file );
+				string rawFileName = Path.GetFileNameWithoutExtension( file );
 				Log.Info( $"Loading {rawFileName}" );
 				HeroDatas.Add( rawFileName, FileSystem.Mounted.ReadJson<HeroData>( $"data/heroes/{rawFileName}.json" ) );
 			}
-		}
-
-		[ClientCmd( "reloadherodata" )]
-		public static void ReloadHeroData()
-		{
-			Load();
 		}
 	}
 }

@@ -44,7 +44,7 @@ namespace Extraction.UI
 
 				if ( inventoryItem is ExtractionWeapon weapon )
 				{
-					var weaponStr = $"{i+1} {weapon.WeaponName ?? "Shit"}";
+					var weaponStr = $"{ i + 1 } {weapon.EntityName ?? "Shit"}";
 					
 					var label = Add.Label( weaponStr );
 					loadoutTexts.Add( label );	

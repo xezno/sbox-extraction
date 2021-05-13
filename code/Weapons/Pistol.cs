@@ -3,7 +3,7 @@
 // TODO: Move weapons into JSON files or something
 namespace Extraction.Weapons
 {
-	[Library( "ex_pistol", Title = "Pistol" )]
+	[Library( "ext_pistol", Title = "Pistol" )]
 	internal class Pistol : ExtractionWeapon
 	{
 		public override string WeaponName => "Caulden";

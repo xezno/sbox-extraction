@@ -1,5 +1,6 @@
 ﻿using System;
 using Extraction.Hero;
+using Extraction.UI;
 using Sandbox;
 using Sandbox.UI;
 
@@ -38,12 +39,16 @@ namespace Extraction.Actor
 				WishHeroId = ExtractionConfig.DefaultHero;
 
 			// Don't print the message if we've just spawned in (which is the only case where HeroId should be empty)
-			if ( !string.IsNullOrEmpty(HeroId) )
-				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {WishHeroId} (was {HeroId})" );
+			if ( string.IsNullOrEmpty( HeroId ) )
+			{
+				string heroName = HeroCollection.HeroDatas[WishHeroId].Name;
+				string oldHeroName = HeroCollection.HeroDatas[HeroId].Name;
+				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {heroName} (was {oldHeroName})" );
+			}
 
 			HeroId = WishHeroId;
 			
-			// I want to bang my head against a wall.
+			// Set up new hero stuff
 			SetHeroControllerProperties();
 		}
 
