@@ -86,12 +86,6 @@ namespace Extraction.Weapons
 				DryFire();
 				return;
 			}
-
-			if ( AmmoClip <= 3 && ClipSize > 3 )
-			{
-				// Nearing end of clip - alert player
-				PlaySound( "pistol-dryfire" );	
-			}
 			
 			ShootEffects();
 			PlaySound( ShotSound );
