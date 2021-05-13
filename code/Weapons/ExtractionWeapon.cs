@@ -98,7 +98,7 @@ namespace Extraction.Weapons
 
 			for ( int i = 0; i < ShotCount; ++i )
 			{
-				ShootBullet( Spread, Force, Damage, BulletSize );
+				ShootBullet( Spread, Force, Damage, BulletSize, i == 0 );
 			}
 		}
 
@@ -220,7 +220,7 @@ namespace Extraction.Weapons
 		/// <summary>
 		///     Shoot a single bullet
 		/// </summary>
-		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize )
+		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize, bool playAudio )
 		{
 			Vector3 forward = Owner.EyeRot.Forward;
 			forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
@@ -245,10 +245,19 @@ namespace Extraction.Weapons
 						.UsingTraceResult( traceResult )
 						.WithAttacker( Owner )
 						.WithWeapon( this );
-
+					
 					traceResult.Entity.TakeDamage( damageInfo );
+					
+					if (!traceResult.Entity.IsWorld && playAudio)
+						PlayHitmarkerSound();
 				}
 			}
+		}
+
+		[ClientRpc]
+		public virtual void PlayHitmarkerSound()
+		{
+			PlaySound( "hitmarker-temp" );
 		}
 
 		public bool TakeAmmo( int amount )

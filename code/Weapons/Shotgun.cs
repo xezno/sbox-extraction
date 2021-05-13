@@ -7,7 +7,7 @@ namespace Extraction.Weapons
 	{
 		public override string WeaponName => "shotgun";
 		public override string ShotSound => "rust_pumpshotgun.shoot";
-		public override float Spread => 0.05f;
+		public override float Spread => 0.2f;
 		public override float Force => 1.5f;
 		public override float Damage => 60.0f;
 		public override float BulletSize => 3.0f;

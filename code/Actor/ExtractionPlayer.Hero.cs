@@ -16,7 +16,7 @@ namespace Extraction.Actor
 
 		public HeroData HeroData => HeroCollection.HeroDatas[HeroId];
 
-		// Called when the player decides they want to switch to a different hero
+		/// Called when the player decides they want to switch to a different hero
 		public void ChangeHero( string newHeroId )
 		{
 			if ( !HeroCollection.HeroDatas.ContainsKey( newHeroId ) )
@@ -27,10 +27,9 @@ namespace Extraction.Actor
 			WishHeroId = newHeroId;
 		}
 		
-		// Called when the player actually spawns in as a new hero
+		/// Called when the player actually spawns in as a new hero
 		public void SetupHero()
 		{
-			// Now that we have the ID, lets set up the hero data
 			if ( WishHeroId == HeroId )
 				return;
 
@@ -39,7 +38,7 @@ namespace Extraction.Actor
 				WishHeroId = ExtractionConfig.DefaultHero;
 
 			// Don't print the message if we've just spawned in (which is the only case where HeroId should be empty)
-			if ( string.IsNullOrEmpty( HeroId ) )
+			if ( !string.IsNullOrEmpty( HeroId ) )
 			{
 				string heroName = HeroCollection.HeroDatas[WishHeroId].Name;
 				string oldHeroName = HeroCollection.HeroDatas[HeroId].Name;
@@ -48,10 +47,10 @@ namespace Extraction.Actor
 
 			HeroId = WishHeroId;
 			
-			// Set up new hero stuff
 			SetHeroControllerProperties();
 		}
 
+		/// Set up new hero stuff
 		private void SetHeroControllerProperties()
 		{
 			if ( Controller is ExtractionController controller )

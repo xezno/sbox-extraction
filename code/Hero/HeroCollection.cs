@@ -8,7 +8,6 @@ namespace Extraction.Hero
 	{
 		public static Dictionary<string, HeroData> HeroDatas = new ();
 
-		[ServerCmd( "reloadherodata" )]
 		public static void Load()
 		{
 			HeroDatas = new();
@@ -18,6 +17,12 @@ namespace Extraction.Hero
 				Log.Info( $"Loading {rawFileName}" );
 				HeroDatas.Add( rawFileName, FileSystem.Mounted.ReadJson<HeroData>( $"data/heroes/{rawFileName}.json" ) );
 			}
+		}
+
+		[Event( "client.hotloaded" )]
+		public static void OnHotload()
+		{
+			Load();
 		}
 	}
 }
