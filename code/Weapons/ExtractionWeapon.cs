@@ -1,4 +1,5 @@
-﻿using Extraction.Actor;
+﻿using System;
+using Extraction.Actor;
 using Sandbox;
 using Sandbox.ScreenShake;
 
@@ -45,6 +46,9 @@ namespace Extraction.Weapons
 		[NetPredicted] public TimeSince TimeSinceReload { get; set; }
 		[NetPredicted] public bool IsReloading { get; set; }
 		[NetPredicted] public TimeSince TimeSinceDeployed { get; set; }
+		
+		[NetLocalPredicted] private int RandomSeed { get; set; }
+		[NetLocalPredicted] private int RandomCount { get; set; }
 		
 		public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 		
@@ -214,14 +218,31 @@ namespace Extraction.Weapons
 			CrosshairPanel?.OnEvent( "fire" );
 		}
 
+		// NEEDS TESTING: network-based PRNG so that we can almost perfectly replicate shots on client & server
+		public Vector3 RandomNet()
+		{
+			var random = new System.Random( RandomSeed );
+			
+			float RandomFloat(float min = -1f, float max = 1f) => min + (max - min) * (float)random.NextDouble();
+			var value = new Vector3( RandomFloat(), RandomFloat(), RandomFloat() ).Normal * RandomFloat( 0, 1 );
+			
+			// Set new seed before we leave
+			RandomSeed = (int)(Time.Now * 15289.241f) * RandomCount;
+			RandomCount++;
+			
+			return value;
+		}
+
 		/// <summary>
 		///     Shoot a single bullet
 		/// </summary>
 		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize, ref bool playAudio )
 		{
 			Vector3 forward = Owner.EyeRot.Forward;
-			forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
+			forward += (RandomNet() + RandomNet() + RandomNet() + RandomNet()) * spread * 0.25f;
 			forward = forward.Normal;
+			
+			DebugOverlay.Line( Owner.EyePos, Owner.EyePos + forward * 5000, (IsServer) ? Color.Blue : Color.Red, 10f );
 
 			// ShootBullet is coded in a way where we can have bullets pass through shit
 			// or bounce off shit, in which case it'll return multiple results
