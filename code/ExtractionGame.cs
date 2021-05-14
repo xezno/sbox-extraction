@@ -1,22 +1,28 @@
 ﻿using Extraction.Actor;
+using Extraction.Game;
 using Extraction.Hero;
 using Sandbox;
 using Extraction.UI;
 
 namespace Extraction
 {
-	[Library("extraction", Title = "Addon")]
-	partial class ExtractionGame : Game
+	[Library("extraction", Title = "Extraction")]
+	partial class ExtractionGame : Sandbox.Game
 	{
+		private BaseGameState currentGameState;
+		
 		private static Hud extractionHud;
 		public ExtractionGame()
 		{
 			HeroCollection.Load();
 			
 			Log.Info( "Game Started" );
-			
-			if (IsServer)
+
+			if ( IsServer )
+			{
 				extractionHud = new ExtractionHud();
+				currentGameState = new BaseGameState();
+			}
 		}
 
 		[ServerCmd( "recreatehud", Help = "Recreate hud object" )]

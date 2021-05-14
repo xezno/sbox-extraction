@@ -23,3 +23,7 @@
   = trigger_objective : "Objective Zone"
 [
 ]
+
+@PointClass editorModel( "models/rust_props/black_bin/blackbin.vmdl" ) = ent_health_station : "Health station"
+[
+]

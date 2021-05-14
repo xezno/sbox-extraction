@@ -12,7 +12,6 @@ namespace Extraction.Entities
 			if ( !IsServer ) return;
 			if ( other is ExtractionPlayer player )
 			{
-				Log.Info( $"Player {player.Name} entered {TraceType} zone" );
 				player.CurrentTraceType |= TraceType;
 			}
 			base.StartTouch( other );
@@ -23,8 +22,7 @@ namespace Extraction.Entities
 			if ( !IsServer ) return;
 			// POTENTIAL BUG: Nested entities (of same type) will cause this to fuck up
 			if ( other is ExtractionPlayer player )
-			{
-				Log.Info( $"Player {player.Name} left {TraceType} zone" );	
+			{	
 				player.CurrentTraceType &= ~TraceType;
 			}
 			base.EndTouch( other );

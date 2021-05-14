@@ -63,7 +63,8 @@ namespace Extraction.Actor
 					Respawn();
 				}
 			}
-			
+
+			DrawDebugShit();
 			TickActiveChild();
 			
 			// gross

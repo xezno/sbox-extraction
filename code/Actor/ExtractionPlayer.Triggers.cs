@@ -15,5 +15,10 @@ namespace Extraction.Actor
 			Objective = 1,
 			NoGadgets = 2,
 		}
+
+		private void DrawDebugShit()
+		{
+			DebugOverlay.ScreenText( new Vector2( 100, 100  ), $"Current trigger state: {CurrentTraceType}" );
+		}
 	}
 }
