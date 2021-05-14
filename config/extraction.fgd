@@ -6,6 +6,20 @@
 [
 ]
 
-@SolidClass = ext_no_gadget_zone : "Zone that prevents the use of gadgets"
+@SolidClass base(Trigger)
+	metadata
+	{
+		auto_apply_material = "materials/editor/tools/nogadgets.vmat"
+	}
+  = trigger_no_gadgets : "Zone that prevents the use of gadgets"
+[
+]
+
+@SolidClass base(Trigger) 
+	metadata
+	{
+		auto_apply_material = "materials/editor/tools/objective.vmat"
+	}
+  = trigger_objective : "Objective Zone"
 [
 ]

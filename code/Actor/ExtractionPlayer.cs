@@ -63,7 +63,6 @@ namespace Extraction.Actor
 			}
 
 			TickActiveChild();
-			CheckTrace();
 			
 			// gross
 			if ( Input.Pressed( ExtractionConfig.InventorySlot1 ) )
@@ -82,7 +81,7 @@ namespace Extraction.Actor
 			if ( Input.Pressed( ExtractionConfig.Use ) && IsServer )
 			{
 				Log.Info( "Player used" );
-				if ( CurrentTraceType == TraceType.Objective )
+				if ( CurrentTraceType.HasFlag( TraceType.Objective ) )
 				{
 					Log.Info( "TODO: Objective" );
 				}
