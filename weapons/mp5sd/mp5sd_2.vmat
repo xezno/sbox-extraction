@@ -12,7 +12,7 @@ Layer0
 
 	//---- Color ----
 	g_flModelTintAmount "1.000"
-	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	g_vColorTint "[0.501961 0.501961 0.501961 0.000000]"
 	TextureColor "E:/Games/SteamLibrary/steamapps/common/sbox/addons/extraction/weapons/mp5sd/textures/Material.001_Base_Color.png"
 
 	//---- Fade ----
@@ -26,7 +26,7 @@ Layer0
 	g_flDirectionalLightmapStrength "1.000"
 
 	//---- Metalness ----
-	g_flMetalness "0.000"
+	g_flMetalness "0.500"
 
 	//---- Normal ----
 	TextureNormal "E:/Games/SteamLibrary/steamapps/common/sbox/addons/extraction/weapons/mp5sd/textures/Material.001_Normal_DirectX.png"

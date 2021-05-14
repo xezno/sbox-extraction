@@ -13,7 +13,6 @@ namespace Extraction.UI
 			
 			SetClass( "bottom", true );
 			
-			AddChild<Loadout>();
 			AddChild<HeroPortrait>();
 			AddChild<Health>();
 			AddChild<Ammo>();

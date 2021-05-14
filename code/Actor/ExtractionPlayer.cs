@@ -1,5 +1,7 @@
-﻿using Sandbox;
+﻿using System.Linq;
+using Sandbox;
 using Extraction.Camera;
+using Extraction.UI;
 using Extraction.Weapons;
 
 namespace Extraction.Actor
@@ -29,9 +31,7 @@ namespace Extraction.Actor
 		}
 		
 		private void SetupInventory()
-		{
-			Inventory.DeleteContents();
-
+		{			
 			for ( int i = 0; i < HeroData.Loadout.Length; i++ )
 			{
 				string item = HeroData.Loadout[i];
@@ -43,6 +43,8 @@ namespace Extraction.Actor
 		{
 			base.OnKilled();
 
+			Inventory.DeleteContents();
+			
 			BecomeRagdollOnClient( Vector3.Zero, 0 );
 
 			Controller = null;
@@ -61,7 +63,7 @@ namespace Extraction.Actor
 					Respawn();
 				}
 			}
-
+			
 			TickActiveChild();
 			
 			// gross

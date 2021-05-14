@@ -20,7 +20,7 @@
 					},
 					{
 						_class = "ModelModifier_Translate"
-						translation = [ -15.0, -2.0, -88.0 ]
+						translation = [ -15.0, -2.0, -90.0 ]
 					},
 				]
 			},
@@ -71,7 +71,7 @@
 						_class = "Attachment"
 						name = "muzzle"
 						parent_bone = "mp5sd"
-						relative_origin = [ 42.755043, 1.830882, 0.125335 ]
+						relative_origin = [ 46.947708, 1.83088, 0.125333 ]
 						relative_angles = [ 0.0, 0.0, 0.000097 ]
 						weight = 1.0
 						ignore_rotation = false

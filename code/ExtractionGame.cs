@@ -14,6 +14,7 @@ namespace Extraction
 			HeroCollection.Load();
 			
 			Log.Info( "Game Started" );
+			
 			if (IsServer)
 				extractionHud = new ExtractionHud();
 		}

@@ -24,6 +24,7 @@ namespace Extraction.Weapons
 		public virtual int ClipSize => 16;
 		public virtual float ReloadTime => 3.0f;
 		public virtual string WeaponName { get; set; }
+		public virtual string UiIcon => "/ui/extraction/placeholder.png";
 		public virtual string ShotSound => "rust_pistol.shoot";
 		public virtual string DryFireSound => "pistol-dryfire";
 		public virtual string ShootParticles => "particles/pistol_muzzleflash.vpcf";
@@ -91,9 +92,10 @@ namespace Extraction.Weapons
 			ShootEffects();
 			PlaySound( ShotSound );
 
+			bool playAudio = true; // Only play audio once 
 			for ( int i = 0; i < ShotCount; ++i )
 			{
-				ShootBullet( Spread, Force, Damage, BulletSize, i == 0 );
+				ShootBullet( Spread, Force, Damage, BulletSize, ref playAudio );
 			}
 		}
 
@@ -215,7 +217,7 @@ namespace Extraction.Weapons
 		/// <summary>
 		///     Shoot a single bullet
 		/// </summary>
-		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize, bool playAudio )
+		public virtual void ShootBullet( float spread, float force, float damage, float bulletSize, ref bool playAudio )
 		{
 			Vector3 forward = Owner.EyeRot.Forward;
 			forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
@@ -242,9 +244,12 @@ namespace Extraction.Weapons
 						.WithWeapon( this );
 					
 					traceResult.Entity.TakeDamage( damageInfo );
-					
-					if (!traceResult.Entity.IsWorld && playAudio)
-						PlayHitmarkerSound();
+
+					if ( !traceResult.Entity.IsWorld && playAudio )
+					{
+						PlayHitmarkerSound(Owner);
+						playAudio = false;
+					}
 				}
 			}
 		}
@@ -252,7 +257,8 @@ namespace Extraction.Weapons
 		[ClientRpc]
 		public virtual void PlayHitmarkerSound()
 		{
-			PlaySound( "hitmarker-temp" );
+			if (Owner.IsLocalPlayer)
+				PlaySound( "hitmarker-temp" );
 		}
 
 		public bool TakeAmmo( int amount )

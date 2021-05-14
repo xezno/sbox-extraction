@@ -16,7 +16,7 @@ namespace Extraction.UI
 			if ( !IsClient ) return;
 
 			current = this;
-
+			
 			RootPanel.AddChild<Pings>();
 			RootPanel.AddChild<Crosshair>();
 

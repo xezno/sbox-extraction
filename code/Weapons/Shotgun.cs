@@ -5,13 +5,13 @@ namespace Extraction.Weapons
 	[Library( "ext_shotgun", Title = "Shotgun" )]
 	internal class Shotgun : ExtractionWeapon
 	{
-		public override string WeaponName => "shotgun";
+		public override string WeaponName => "Shotgun";
 		public override string ShotSound => "rust_pumpshotgun.shoot";
 		public override float Spread => 0.2f;
 		public override float Force => 1.5f;
-		public override float Damage => 60.0f;
+		public override float Damage => 7.0f; // Per pellet
 		public override float BulletSize => 3.0f;
-		public override int ShotCount => 8;
+		public override int ShotCount => 12;
 
 		public override string ViewModelPath => "weapons/rust_pumpshotgun/v_rust_pumpshotgun.vmdl";
 		public override string WorldModelPath => "weapons/rust_pumpshotgun/rust_pumpshotgun.vmdl";

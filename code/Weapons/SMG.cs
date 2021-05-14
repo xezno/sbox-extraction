@@ -16,6 +16,8 @@ namespace Extraction.Weapons
 		public override string ViewModelPath => "weapons/mp5sd/v_mp5sd.vmdl";
 		public override string WorldModelPath => "weapons/mp5sd/mp5sd.vmdl";
 
+		public override string UiIcon => "weapons/mp5sd/mp5sd-icon.png";
+
 		public override int ClipSize => 30;
 
 		public override float PrimaryRate => 10.0f;
