@@ -242,7 +242,7 @@ namespace Extraction.Weapons
 			forward += (RandomNet() + RandomNet() + RandomNet() + RandomNet()) * spread * 0.25f;
 			forward = forward.Normal;
 			
-			DebugOverlay.Line( Owner.EyePos, Owner.EyePos + forward * 5000, (IsServer) ? Color.Blue : Color.Red, 10f );
+			// DebugOverlay.Line( Owner.EyePos, Owner.EyePos + forward * 5000, (IsServer) ? Color.Blue : Color.Red, 10f );
 
 			// ShootBullet is coded in a way where we can have bullets pass through shit
 			// or bounce off shit, in which case it'll return multiple results
