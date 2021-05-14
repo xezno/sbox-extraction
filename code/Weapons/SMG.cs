@@ -5,7 +5,7 @@ namespace Extraction.Weapons
 	[Library( "ext_smg", Title = "SMG" )]
 	internal class SMG : ExtractionWeapon
 	{
-		public override string WeaponName => "KEK-10";
+		public override string WeaponName => "MP5SD";
 		public override string ShotSound => "rust_smg.shoot";
 		public override float Spread => 0.05f;
 		public override float Force => 1.5f;
@@ -13,8 +13,8 @@ namespace Extraction.Weapons
 		public override float BulletSize => 3.0f;
 		public override int ShotCount => 1;
 
-		public override string ViewModelPath => "models/v_hk_mp5sd.vmdl";
-		public override string WorldModelPath => "models/hk_mp5sd.vmdl";
+		public override string ViewModelPath => "weapons/mp5sd/v_mp5sd.vmdl";
+		public override string WorldModelPath => "weapons/mp5sd/mp5sd.vmdl";
 
 		public override int ClipSize => 30;
 

@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using Extraction.Actor;
+using Sandbox;
 using Sandbox.ScreenShake;
 
 /* TODO:
@@ -280,7 +281,7 @@ namespace Extraction.Weapons
 				return;
 			}
 
-			ViewModelEntity = new BaseViewModel();
+			ViewModelEntity = new DynamicViewModel();
 			ViewModelEntity.WorldPos = WorldPos;
 			ViewModelEntity.Owner = Owner;
 			ViewModelEntity.EnableViewmodelRendering = true;

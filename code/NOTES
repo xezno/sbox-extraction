@@ -2,6 +2,8 @@
 TODO Gameplay:
 - Game rules
 - Link up all hero properties
+- Replace the dumb trigger system with entities 
+    (e.g. https://github.com/cr4yz/strafe/blob/master/code/entities/TriggerTimerStart.cs) of SolidClass type
 
 TODO Controls:
 - +iv_menu: Ability1
