@@ -11,7 +11,7 @@
 				[
 					{
 						_class = "ModelModifier_ScaleAndMirror"
-						scale = 0.5
+						scale = 0.6
 						mirror_x = false
 						mirror_y = false
 						mirror_z = false
@@ -20,7 +20,7 @@
 					},
 					{
 						_class = "ModelModifier_Translate"
-						translation = [ -15.0, -2.0, -90.0 ]
+						translation = [ -25.0, -2.0, -106.0 ]
 					},
 				]
 			},
@@ -106,7 +106,7 @@
 				[
 					{
 						_class = "AnimFile"
-						name = "v_mp5sd"
+						name = "v_mp5sd@Draw"
 						activity_name = ""
 						activity_weight = 1
 						weight_list_name = ""
@@ -118,7 +118,67 @@
 						hidden = false
 						anim_markup_ordered = false
 						disable_compression = false
-						source_filename = "weapons/mp5sd/v_mp5sd.fbx"
+						source_filename = "weapons/mp5sd/v_mp5sd@Draw.fbx"
+						start_frame = -1
+						end_frame = 70
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "v_mp5sd@Fire"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "weapons/mp5sd/v_mp5sd@Fire.fbx"
+						start_frame = -1
+						end_frame = 10
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "v_mp5sd@Idle"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "weapons/mp5sd/v_mp5sd@Idle.fbx"
+						start_frame = -1
+						end_frame = 250
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "v_mp5sd@Reload"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "weapons/mp5sd/v_mp5sd@Reload.fbx"
 						start_frame = -1
 						end_frame = -1
 						framerate = -1.0
@@ -130,6 +190,6 @@
 		]
 		model_archetype = ""
 		primary_associated_entity = ""
-		anim_graph_name = ""
+		anim_graph_name = "weapons/mp5sd/v_mp5sd.vanmgrph"
 	}
 }

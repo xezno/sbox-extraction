@@ -29,7 +29,7 @@ namespace Extraction.UI
 			
 			LoadWorld();
 
-			Add.Image( "scene:portrait", "hero-image" );
+			heroImage = Add.Image( "scene:portrait", "hero-image" );
 			
 			heroText = Add.Label( "HeroName", "current-hero" );
 			heroText.Style.Set( "font-size: 18px" );
@@ -102,12 +102,6 @@ namespace Extraction.UI
 			
 			playerPreview.Update( Time.Now - startTime );
 			sceneCapture?.SetCamera( Vector3.Up * 60 + CamAngles.Direction * -50, CamAngles, 30 );
-		}
-
-		[Event( "hero_change" )] // TODO
-		public void UpdateHeroPortrait()
-		{
-			heroImage = Add.Image( "ui/extraction/placeholder.png", "hero-image" );
 		}
 	}
 }

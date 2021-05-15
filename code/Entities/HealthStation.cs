@@ -11,7 +11,7 @@ namespace Extraction.Entities
 		{
 			base.Spawn();
 
-			SetModel( "models/citizen_props/crowbar01.vmdl" );
+			SetModel( "models/rust_props/black_bin/blackbin.vmdl" );
 			PhysicsEnabled = false;
 			trigger = new();
 			trigger.WorldPos = WorldPos;

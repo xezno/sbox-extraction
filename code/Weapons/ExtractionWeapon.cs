@@ -6,9 +6,6 @@ using Sandbox.ScreenShake;
 /* TODO:
  * - ADS
  * - Damage ranges
- * - Player hit(marker) SFX
- * - Ammo stuff
- * - Weapon sway
  */
 namespace Extraction.Weapons
 {
@@ -176,8 +173,6 @@ namespace Extraction.Weapons
 		public virtual void StartReloadEffects()
 		{
 			ViewModelEntity?.SetAnimParam( "reload", true );
-
-			// TODO - player third person model reload
 		}
 
 		public override bool CanSecondaryAttack()
@@ -256,21 +251,18 @@ namespace Extraction.Weapons
 				if ( !traceResult.Entity.IsValid() )
 					continue;
 
-				// We turn prediction off for this, so any exploding effects don't get culled etc
-				using ( Prediction.Off() )
-				{
-					var damageInfo = DamageInfo.FromBullet( traceResult.EndPos, forward * 100 * force, damage )
-						.UsingTraceResult( traceResult )
-						.WithAttacker( Owner )
-						.WithWeapon( this );
+				using var _ = Prediction.Off(); // We turn prediction off for this, so any exploding effects don't get culled etc
+				var damageInfo = DamageInfo.FromBullet( traceResult.EndPos, forward * 100 * force, damage )
+					.UsingTraceResult( traceResult )
+					.WithAttacker( Owner )
+					.WithWeapon( this );
 					
-					traceResult.Entity.TakeDamage( damageInfo );
+				traceResult.Entity.TakeDamage( damageInfo );
 
-					if ( !traceResult.Entity.IsWorld && playAudio )
-					{
-						PlayHitmarkerSound(Owner);
-						playAudio = false;
-					}
+				if ( !traceResult.Entity.IsWorld && playAudio && traceResult.Entity is Player )
+				{
+					PlayHitmarkerSound( Owner );
+					playAudio = false;
 				}
 			}
 		}
@@ -278,8 +270,8 @@ namespace Extraction.Weapons
 		[ClientRpc]
 		public virtual void PlayHitmarkerSound()
 		{
-			if (Owner.IsLocalPlayer)
-				PlaySound( "hitmarker-temp" );
+			// if (Owner.IsLocalPlayer)
+			PlaySound( "hitmarker-temp" );
 		}
 
 		public bool TakeAmmo( int amount )

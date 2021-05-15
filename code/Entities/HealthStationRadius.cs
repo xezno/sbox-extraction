@@ -5,14 +5,13 @@ namespace Extraction.Entities
 	public class HealthStationRadius : RenderEntity
 	{
 		public Material Material = Material.Load( "materials/entities/healthstationradius.vmat" );
-
-		public Vector3 Direction = Vector3.Zero;
 		public bool ShouldDraw = false;
 
 		private const float Radius = 75f;
 
 		public override void Spawn()
 		{
+			WorldScale = Radius;
 			base.Spawn();
 			// I would love to use a decal for this, but there's no way of moving them dynamically at the minute
 			// (and I'm not sure if S2 supports that, either)
@@ -25,7 +24,6 @@ namespace Extraction.Entities
 				return;
 
 			Render.SetLighting( obj );
-			
 			var vertexBuffer = Render.GetDynamicVB( true );
 			// vertexBuffer.AddCube( WorldPos, Vector3.One * 100, Rotation.Identity );
 			vertexBuffer.AddQuad( new Ray( WorldPos, Vector3.Up ), Vector3.Forward * Radius, Vector3.Left * Radius );

@@ -1,11 +1,11 @@
 {
-  "name": "Debug Test",
-  "country": "United Kingdom",
+  "name": "The Duke",
+  "country": "Australia",
   "bodyType": "Heavy",
   "health": 200,
   "speed": 270,
   "class": "Medic",
-  "description": "This won't exist in the final game",
+  "description": "The Duke, MP5 / Pistol. Heavy 'assault' class designed to guard or assist objectives",
   "portrait": "ui/extraction/placeholder.png",
   "doesObjectivesFast": true,
 

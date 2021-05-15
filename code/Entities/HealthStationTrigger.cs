@@ -7,13 +7,15 @@ namespace Extraction.Entities
 	// This should all happen server-side and the client should never really know about it
 	public class HealthStationTrigger : BaseTrigger
 	{
-		// TODO: Perhaps attach this to each player instead?
 		private Dictionary<Player, TimeSince> playerTimers = new Dictionary<Player, TimeSince>();
 		private List<Player> currentlyInProximity = new List<Player>();
+
+		private const float Radius = 75;
 		
 		public override void Spawn()
 		{
-			SetupPhysicsFromAABB( PhysicsMotionType.Static, new Vector3( -75, -75, -75 ), new Vector3( 75, 75, 75 ) );
+			SetupPhysicsFromAABB( PhysicsMotionType.Static, new Vector3( -Radius, -Radius, 0 ),
+				new Vector3( Radius, Radius, Radius ) );
 			CollisionGroup = CollisionGroup.Trigger;
 		}
 
@@ -24,10 +26,10 @@ namespace Extraction.Entities
 			{
 				if ( playerTimers.TryGetValue( player, out var timeSince ) )
 				{
-					if ( timeSince.Relative > 1 )
+					if ( timeSince.Relative > 0.1f )
 					{
 						// TODO: Limit player health
-						player.Health += 15;
+						player.Health += 2;
 						playerTimers[player] = 0;
 					}
 				}
@@ -43,7 +45,6 @@ namespace Extraction.Entities
 			if ( !IsServer ) return;
 			if ( other is ExtractionPlayer player )
 			{
-				Log.Info( "Something entered health station proximity..." );
 				if ( !currentlyInProximity.Contains( player ) )
 					currentlyInProximity.Add( player );
 			}
@@ -55,7 +56,6 @@ namespace Extraction.Entities
 			if ( !IsServer ) return;
 			if ( other is ExtractionPlayer player )
 			{
-				Log.Info( "Something exited health station proximity..." );
 				if ( currentlyInProximity.Contains( player ) )
 					currentlyInProximity.Remove( player );
 			}

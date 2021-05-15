@@ -14,7 +14,7 @@ namespace Extraction
 		#region Heroes
 		// Ideally we'll have separate models for each hero in future, but for prototyping we'll just use Terry
 		public static string PlayerModel => "models/citizen/citizen.vmdl";
-		public static string DefaultHero => "debug";
+		public static string DefaultHero => "debug-slow";
 		#endregion
 		
 		#region Controls

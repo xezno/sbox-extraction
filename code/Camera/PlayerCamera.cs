@@ -42,7 +42,7 @@ namespace Extraction.Camera
 			float targetFov = ExtractionConfig.FieldOfView;
 			// Log.Info( $"{player.Velocity.WithZ( 0 ).Length}" );
 			
-			if ( player.Velocity.WithZ( 0 ).Length >= player.HeroData.Speed - FovThreshold ) // TODO: Length^2 is faster than Length
+			if ( player.Velocity.WithZ( 0 ).Length >= player.HeroData.Speed - FovThreshold )
 			{
 				targetFov = ExtractionConfig.SprintFieldOfView;
 			}

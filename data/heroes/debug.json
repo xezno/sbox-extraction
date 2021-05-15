@@ -1,11 +1,11 @@
 {
-  "name": "sahfgjkjasdghasdjlghadjkghadflghdfajlkghdfjiklghjdaklghjlakdfghjdlakghjdaflkghjdkal",
+  "name": "Medic01",
   "country": "United Kingdom",
   "bodyType": "Light",
   "health": 80,
   "speed": 400,
   "class": "Medic",
-  "description": "This won't exist in the final game",
+  "description": "Medic, Shotgun / Pistol, designed for team assistance & close quarters battles",
   "portrait": "ui/extraction/placeholder.png",
   "doesObjectivesFast": true,
 
