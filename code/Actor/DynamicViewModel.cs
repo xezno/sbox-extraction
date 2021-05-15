@@ -14,7 +14,7 @@ namespace Extraction.Actor
 		protected float SwingInfluence => 0.05f;
 		protected float ReturnSpeed => 5.0f;
 		protected float MaxOffsetLength => 10.0f;
-		protected float BobCycleTime => MathX.Clamp((Player.Local.Velocity.Length) / 22f, 1f, 20f);
+		protected float BobCycleTime => 14f;
 		protected Vector3 BobDirection => new( 0.0f, 1.0f, 0.5f );
 
 		public override void UpdateCamera( Sandbox.Camera camera )

@@ -17,7 +17,6 @@ namespace Extraction.UI
 
 			current = this;
 			
-			RootPanel.AddChild<Pings>();
 			RootPanel.AddChild<Crosshair>();
 
 			RootPanel.AddChild<GearPanel>();

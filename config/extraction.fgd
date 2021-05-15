@@ -1,9 +1,14 @@
-@PointClass editormodel( "models/editor/citizen_v2_staging_blue.vmdl" ) = ext_team_spawn_a : "Spawn point for team A"
+@PointClass base(Targetname, EnableDisable, PlayerClass) tags( Info ) editormodel( "models/dev/playerstart_tint.vmdl", fixedbounds ) color(0 0 255)  = info_player_start_team_a : "Spawn point for team A"
 [
+	// HACK: 
+	rendercolor(color255) : "Color (R G B)" : "0 0 255"
 ]
 
-@PointClass editormodel( "models/editor/citizen_v2_staging_red.vmdl" ) = ext_team_spawn_b : "Spawn point for team B"
+
+@PointClass base(Targetname, EnableDisable, PlayerClass) tags( Info ) editormodel( "models/dev/playerstart_tint.vmdl", fixedbounds ) color(255 0 0) = info_player_start_team_b : "Spawn point for team B"
 [
+	// HACK: 
+	rendercolor(color255) : "Color (R G B)" : "255 0 0"
 ]
 
 @SolidClass base(Trigger)

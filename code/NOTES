@@ -13,9 +13,7 @@ TODO Controls:
 
 TODO UI:
 - Health bar
-- Ability viz
-- Improve ping UI
-    - If it's off-screen, clamp it to the sides 
+- Ability viz 
 
 TODO Movement:
 - Wall bouncing

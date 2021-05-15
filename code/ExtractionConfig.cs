@@ -22,7 +22,6 @@ namespace Extraction
 		// then it should be pretty easy to fix things
 		
 		public static float RespawnTimer => 3.0f;
-		public static InputButton Ping => InputButton.View;
 		public static InputButton Fire => InputButton.Weapon1;
 		public static InputButton AimDownSights => InputButton.Weapon2;
 		public static InputButton Use => InputButton.Use;

@@ -88,13 +88,5 @@ namespace Extraction.Actor
 			ExtractionConfig.SprintFieldOfView = newMultiplier;
 			Log.Info( $"Set sprint FOV multiplier to {ExtractionConfig.SprintFieldOfView}" );
 		}
-
-		[ServerCmd( "ping", Help = "Ping a location for your teammates" )]
-		public static void Ping()
-		{
-			var player = GetCommandCaller();
-			player.SetPing();
-			player.SendPingMessage();
-		}
 	}
 }

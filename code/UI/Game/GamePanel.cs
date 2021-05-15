@@ -11,7 +11,6 @@ namespace Extraction.UI
 		{
 			AddChild<ChatPanel>();
 			AddChild<InteractPanel>();
-			// AddChild<PingPanel>();
 		}	
 	}
 }
