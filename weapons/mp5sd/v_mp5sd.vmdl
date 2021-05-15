@@ -20,7 +20,7 @@
 					},
 					{
 						_class = "ModelModifier_Translate"
-						translation = [ -25.0, -2.0, -105.0 ]
+						translation = [ -28.0, 2.0, -105.0 ]
 					},
 				]
 			},
@@ -160,7 +160,7 @@
 						disable_compression = false
 						source_filename = "weapons/mp5sd/v_mp5sd@Idle.fbx"
 						start_frame = -1
-						end_frame = 250
+						end_frame = 120
 						framerate = -1.0
 						reverse = false
 					},
@@ -180,7 +180,7 @@
 						disable_compression = false
 						source_filename = "weapons/mp5sd/v_mp5sd@Reload.fbx"
 						start_frame = -1
-						end_frame = -1
+						end_frame = 180
 						framerate = -1.0
 						reverse = false
 					},

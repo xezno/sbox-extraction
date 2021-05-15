@@ -3,6 +3,7 @@ using Sandbox;
 using Extraction.Camera;
 using Extraction.UI;
 using Extraction.Weapons;
+using Sandbox.InternalTests;
 
 namespace Extraction.Actor
 {
@@ -28,6 +29,9 @@ namespace Extraction.Actor
 			SetupInventory();
 
 			base.Respawn();
+			
+			
+			Health = HeroData.Health;
 		}
 		
 		private void SetupInventory()
@@ -62,6 +66,13 @@ namespace Extraction.Actor
 				{
 					Respawn();
 				}
+			}
+
+			if ( IsServer )
+			{
+				// Clamp health
+				if ( Health > HeroData.Health )
+					Health = HeroData.Health;
 			}
 
 			DrawDebugShit();

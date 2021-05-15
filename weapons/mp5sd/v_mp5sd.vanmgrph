@@ -107,7 +107,7 @@
 			{
 				_class = "CStateMachineAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 37.0, -139.0 ]
+				m_vecPosition = [ 37.0, -140.0 ]
 				m_nNodeID = 
 				{
 					m_id = 351827117
@@ -354,7 +354,7 @@
 						{
 							m_id = 366048455
 						}
-						m_position = [ 206.0, -20.0 ]
+						m_position = [ 207.0, -21.0 ]
 						m_bIsStartState = true
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -376,7 +376,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.2
+								m_blendDuration = 0.5
 								m_destState = 
 								{
 									m_id = 366048455
@@ -404,7 +404,7 @@
 						{
 							m_id = 824156878
 						}
-						m_position = [ -40.0, -133.0 ]
+						m_position = [ -39.0, -133.0 ]
 						m_bIsStartState = false
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -454,7 +454,7 @@
 				m_networkMode = "ClientSimulate"
 				m_tagSpans = [  ]
 				m_sequenceName = "v_mp5sd@Fire"
-				m_playbackSpeed = 1.0
+				m_playbackSpeed = 0.5
 				m_bLoop = false
 			}
 		},

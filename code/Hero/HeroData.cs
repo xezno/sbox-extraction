@@ -7,8 +7,8 @@
 		public string Name { get; set; }
 		public string Country { get; set; }
 		public string BodyType { get; set; }
-		public long Health { get; set; }
-		public long Speed { get; set; }
+		public int Health { get; set; }
+		public int Speed { get; set; }
 		public string Class { get; set; }
 		public string Description { get; set; }
 		public string Portrait { get; set; }
