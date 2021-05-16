@@ -77,7 +77,7 @@ namespace Extraction.Actor
 				camera.ViewModelFieldOfView = 65;
 			}
 
-			WorldPos = camera.Pos + (aimPos);
+			WorldPos = swayPos + aimPos;
 			WorldRot = camera.Rot;
 		}
 
