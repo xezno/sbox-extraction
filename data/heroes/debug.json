@@ -26,11 +26,8 @@
   ],
 
   "clothing": [
-    "models/citizen_clothes/hair/hair_malestyle03.vmdl",
-    "models/citizen_clothes/shirt/shirt_shortsleeve.plain.vmdl",
-    "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
     "models/citizen_clothes/jacket/labcoat.vmdl",
     "models/citizen_clothes/trousers/trousers.lab.vmdl",
-    "models/citizen_clothes/shoes/shoes.police.vmdl"
+    "models/citizen_clothes/shoes/shoes.workboots.vmdl"
   ]
 }

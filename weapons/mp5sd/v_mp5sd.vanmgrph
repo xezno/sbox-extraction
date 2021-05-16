@@ -64,6 +64,14 @@
 				}
 				m_clipName = ""
 			},
+			{
+				_class = "CStringAnimTag"
+				m_name = "Unnamed Tag"
+				m_tagID = 
+				{
+					m_id = 536466693
+				}
+			},
 		]
 	}
 	m_pMovementManager = 
@@ -118,7 +126,7 @@
 			{
 				_class = "CStateMachineAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 37.0, -141.0 ]
+				m_vecPosition = [ 36.0, -141.0 ]
 				m_nNodeID = 
 				{
 					m_id = 351827117
@@ -266,7 +274,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.1
+								m_blendDuration = 0.0
 								m_destState = 
 								{
 									m_id = 366048455
@@ -316,7 +324,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.1
+								m_blendDuration = 0.4
 								m_destState = 
 								{
 									m_id = 366048455
@@ -327,7 +335,7 @@
 								m_blendCurve = 
 								{
 									m_vControlPoint1 = [ 0.5, 0.0 ]
-									m_vControlPoint2 = [ 0.5, 1.0 ]
+									m_vControlPoint2 = [ 0.0, 1.0 ]
 								}
 								m_bForceFootPlant = false
 								m_bDisabled = false
@@ -387,7 +395,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.1
+								m_blendDuration = 0.0
 								m_destState = 
 								{
 									m_id = 366048455

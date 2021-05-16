@@ -4,12 +4,12 @@
 	{
 		sounds = 
 		[
-			"sound/pistol-dryfire.wav",
+			"weapons/rust_smg/sounds/rust_smg_dryfire.vsnd",
 		]
 		UI = false
 		Volume = 2.0
 		VolumeRandom = 0.0
-		Pitch = 0.75
+		Pitch = 1.0
 		PitchRandom = 0.0
 		DistanceMax = 1000.0
 	}

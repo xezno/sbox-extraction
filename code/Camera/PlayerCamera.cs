@@ -9,6 +9,8 @@ namespace Extraction.Camera
 	{
 		private Vector3 lastPos;
 		private int FovThreshold = 20;
+
+		public float TargetFov { get; set; } = ExtractionConfig.FieldOfView;
 		
 		public override void Activated()
 		{
@@ -39,15 +41,15 @@ namespace Extraction.Camera
 			if ( player == null ) return;
 			if ( playerController == null ) return;
 			
-			float targetFov = ExtractionConfig.FieldOfView;
-			// Log.Info( $"{player.Velocity.WithZ( 0 ).Length}" );
-			
+			// TODO: Put this in movement
+			//
 			if ( player.Velocity.WithZ( 0 ).Length >= player.HeroData.Speed - FovThreshold )
 			{
-				targetFov = ExtractionConfig.SprintFieldOfView;
+				TargetFov = ExtractionConfig.SprintFieldOfView;
 			}
 
-			FieldOfView = FieldOfView.LerpTo( targetFov , 10.0f * Time.Delta, false );
+			FieldOfView = FieldOfView.LerpTo( TargetFov, 10.0f * Time.Delta, false );
+			TargetFov = ExtractionConfig.FieldOfView;
 		}
 	}
 }

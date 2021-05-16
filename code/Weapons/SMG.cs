@@ -28,5 +28,7 @@ namespace Extraction.Weapons
 		public override HoldType WeaponHoldType => HoldType.Rifle;
 
 		public override int Slot => 0;
+
+		public override Vector3 AdsOffset => new( -11.23f, -5.25f, 3.5f );
 	}
 }

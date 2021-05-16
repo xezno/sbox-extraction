@@ -1,7 +1,9 @@
 ﻿using System;
 using Extraction.Actor;
 using Sandbox;
+using Sandbox.Rcon;
 using Sandbox.ScreenShake;
+using Entity = Sandbox.Entity;
 
 /* TODO:
  * - ADS
@@ -37,6 +39,9 @@ namespace Extraction.Weapons
 		public virtual bool AutoFire => false;
 
 		public virtual HoldType WeaponHoldType => HoldType.Pistol;
+
+		public virtual Vector3 AdsOffset => new();
+		public bool IsAimingDownSights { get; private set; }
 
 		[NetPredicted] public int ReserveAmmo { get; set; }
 		[NetPredicted] public int AmmoClip { get; set; }
@@ -89,6 +94,8 @@ namespace Extraction.Weapons
 				DryFire();
 				return;
 			}
+			
+			Owner.GetActiveController().AddEvent( "attack" ); // Play attack anim
 			
 			ShootEffects();
 			PlaySound( ShotSound );
@@ -177,24 +184,13 @@ namespace Extraction.Weapons
 
 		public override bool CanSecondaryAttack()
 		{
-			return base.CanSecondaryAttack() && Owner.Health > 0;
+			return Owner.Input.Down( InputButton.Attack2 ) && Owner.Health > 0;
 		}
 
-		public override void AttackSecondary()
+		[Event( "client.tick" )]
+		public void OnClientTick()
 		{
-			base.AttackSecondary();
-			return;
-			// TODO: ADS
-			Log.Info( "Secondary Attack" );
-			
-			AimDownSights();
-		}
-
-		[ClientRpc]
-		public virtual void AimDownSights()
-		{
-			Log.Info( ViewModelEntity.LocalPos.ToString() );
-			ViewModelEntity.LocalPos = new Vector3( 0, 0.5f, 0 );
+			IsAimingDownSights = CanSecondaryAttack();
 		}
 
 		[ClientRpc]
@@ -299,7 +295,7 @@ namespace Extraction.Weapons
 			{
 				return;
 			}
-
+	
 			ViewModelEntity = new DynamicViewModel();
 			ViewModelEntity.WorldPos = WorldPos;
 			ViewModelEntity.Owner = Owner;

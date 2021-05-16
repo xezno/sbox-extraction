@@ -8,7 +8,9 @@ namespace Extraction
 		public static float FieldOfView { get; set; } = 100f;
 
 		private static float sprintFovMultiplier = 1.1f;
+		private static float adsFovMultiplier = 0.75f;
 		public static float SprintFieldOfView { get => FieldOfView * sprintFovMultiplier; set => sprintFovMultiplier = value; }
+		public static float AdsFieldOfView  { get => FieldOfView * adsFovMultiplier; set => adsFovMultiplier = value; }
 		#endregion
 		
 		#region Heroes
