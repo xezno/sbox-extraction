@@ -53,7 +53,18 @@
 	m_pTagManager = 
 	{
 		_class = "CAnimTagManager"
-		m_tags = [  ]
+		m_tags = 
+		[
+			{
+				_class = "CAudioAnimTag"
+				m_name = "weapons/mp5sd/sounds/mp5sd-reload.vsnd"
+				m_tagID = 
+				{
+					m_id = 624167220
+				}
+				m_clipName = ""
+			},
+		]
 	}
 	m_pMovementManager = 
 	{
@@ -107,7 +118,7 @@
 			{
 				_class = "CStateMachineAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 37.0, -140.0 ]
+				m_vecPosition = [ 37.0, -141.0 ]
 				m_nNodeID = 
 				{
 					m_id = 351827117
@@ -255,7 +266,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.2
+								m_blendDuration = 0.1
 								m_destState = 
 								{
 									m_id = 366048455
@@ -305,7 +316,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.2
+								m_blendDuration = 0.1
 								m_destState = 
 								{
 									m_id = 366048455
@@ -376,7 +387,7 @@
 										m_bIsFinished = true
 									},
 								]
-								m_blendDuration = 0.5
+								m_blendDuration = 0.1
 								m_destState = 
 								{
 									m_id = 366048455
@@ -454,7 +465,7 @@
 				m_networkMode = "ClientSimulate"
 				m_tagSpans = [  ]
 				m_sequenceName = "v_mp5sd@Fire"
-				m_playbackSpeed = 0.5
+				m_playbackSpeed = 1.0
 				m_bLoop = false
 			}
 		},
@@ -496,7 +507,7 @@
 				m_networkMode = "ClientSimulate"
 				m_tagSpans = [  ]
 				m_sequenceName = "v_mp5sd@Draw"
-				m_playbackSpeed = 1.0
+				m_playbackSpeed = 1.25
 				m_bLoop = false
 			}
 		},

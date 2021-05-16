@@ -6,7 +6,7 @@ namespace Extraction.Weapons
 	internal class SMG : ExtractionWeapon
 	{
 		public override string WeaponName => "MP5SD";
-		public override string ShotSound => "rust_smg.shoot";
+		public override string ShotSound => "mp5sd-shot";
 		public override float Spread => 0.05f;
 		public override float Force => 1.5f;
 		public override float Damage => 9.0f;
