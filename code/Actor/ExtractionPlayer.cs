@@ -77,6 +77,7 @@ namespace Extraction.Actor
 
 			DrawDebugShit();
 			TickActiveChild();
+			TickPlayerUse();
 			
 			// gross
 			if ( Input.Pressed( ExtractionConfig.InventorySlot1 ) )

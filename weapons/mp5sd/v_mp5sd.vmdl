@@ -210,7 +210,7 @@
 						disable_compression = false
 						source_filename = "weapons/mp5sd/v_mp5sd@Reload.fbx"
 						start_frame = -1
-						end_frame = 180
+						end_frame = 220
 						framerate = -1.0
 						reverse = false
 					},
