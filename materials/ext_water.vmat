@@ -37,9 +37,9 @@ Layer0
 	g_vTexCoordScrollSpeed "[0.000 0.000]"
 
 	//---- Water ----
-	g_fPhase "1.846"
-	g_fScale "2.813"
-	g_fSpeed "0.500"
-	g_fWeight "2.382"
-	g_vWaterFlowDir "[0.000 0.000]"
+	g_fPhase "3.956"
+	g_fScale "1.846"
+	g_fSpeed "0.967"
+	g_fWeight "1.679"
+	g_vWaterFlowDir "[0.000 0.500]"
 }

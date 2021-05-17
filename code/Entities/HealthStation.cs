@@ -12,9 +12,21 @@ namespace Extraction.Entities
 			base.Spawn();
 
 			SetModel( "models/rust_props/black_bin/blackbin.vmdl" );
-			PhysicsEnabled = false;
 			trigger = new();
 			trigger.WorldPos = WorldPos;
+
+			WorldScale = 0.6f;
+
+			SetupPhysicsFromModel( PhysicsMotionType.Static, false );
+
+			Health = 25;
+		}
+
+		protected override void OnDestroy()
+		{
+			radius?.Delete();
+			trigger?.Delete();
+			base.OnDestroy();
 		}
 
 		[Event( "frame" )]

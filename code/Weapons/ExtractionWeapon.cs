@@ -79,7 +79,7 @@ namespace Extraction.Weapons
 			bool gunCanFire = (PrimaryRate <= 0) || (TimeSincePrimaryAttack > (1 / PrimaryRate));
 
 
-			return playerIsShooting && gunCanFire && playerIsAlive;
+			return playerIsShooting && gunCanFire && playerIsAlive && !IsReloading;
 		}
 		
 		
@@ -140,6 +140,7 @@ namespace Extraction.Weapons
 		{
 			if ( TimeSinceDeployed < 0.6f )
 			{
+				IsAimingDownSights = false;
 				return;
 			}
 
@@ -152,6 +153,8 @@ namespace Extraction.Weapons
 			{
 				OnReloadFinish();
 			}
+			
+			IsAimingDownSights = CanSecondaryAttack();
 		}
 
 		public virtual void OnReloadFinish()
@@ -184,13 +187,7 @@ namespace Extraction.Weapons
 
 		public override bool CanSecondaryAttack()
 		{
-			return Owner.Input.Down( InputButton.Attack2 ) && Owner.Health > 0;
-		}
-
-		[Event( "client.tick" )]
-		public void OnClientTick()
-		{
-			IsAimingDownSights = CanSecondaryAttack();
+			return Owner.Input.Down( InputButton.Attack2 ) && Owner.Health > 0 && !IsReloading;
 		}
 
 		[ClientRpc]

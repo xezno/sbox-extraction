@@ -22,6 +22,8 @@ namespace Extraction.Actor
 		private Vector3 swayPos;
 		private Vector3 aimPos;
 
+		private float lerpRate = 25f; // How quick the procedural ADS animation should be
+
 		public override void UpdateCamera( Sandbox.Camera camera )
 		{
 			if ( !Player.Local.IsValid() )
@@ -36,23 +38,24 @@ namespace Extraction.Actor
 			}
 
 			swayPos = camera.Pos;
+			
 			if ( Player.Local is ExtractionPlayer player &&
 			     player.Inventory.Active is ExtractionWeapon { IsAimingDownSights: true } weapon )
 			{
-				(( PlayerCamera ) camera).TargetFov = ExtractionConfig.AdsFieldOfView;
-				camera.ViewModelFieldOfView = 55;
-				
 				DebugOverlay.ScreenText(new Vector2(500, 490), aimPos.ToString());
 
 				var targetAimTransform = WorldRot.Right * weapon.AdsOffset.x + WorldRot.Forward * weapon.AdsOffset.y +
 				                     WorldRot.Up * weapon.AdsOffset.z;
 				
-				aimPos = Vector3.Lerp( aimPos, targetAimTransform, 25f * Time.Delta, true);
+				aimPos = aimPos.LerpTo( targetAimTransform, lerpRate * Time.Delta);
 				DebugOverlay.ScreenText(new Vector2(500, 500), aimPos.ToString());
+				
+				(( PlayerCamera ) camera).TargetFov = ExtractionConfig.AdsFieldOfView;
+				camera.ViewModelFieldOfView = camera.ViewModelFieldOfView.LerpTo( 45, lerpRate * Time.Delta, true);
 			}
 			else
 			{
-				aimPos = Vector3.Lerp( aimPos, Vector3.Zero, 25f * Time.Delta, true);
+				aimPos = aimPos.LerpTo( Vector3.Zero, lerpRate * Time.Delta );
 
 				var newPitch = WorldRot.Pitch();
 				var newYaw = WorldRot.Yaw();
@@ -74,7 +77,7 @@ namespace Extraction.Actor
 				lastPitch = newPitch;
 				lastYaw = newYaw;
 			
-				camera.ViewModelFieldOfView = 65;
+				camera.ViewModelFieldOfView = camera.ViewModelFieldOfView.LerpTo( 65, 25f * Time.Delta, true );
 			}
 
 			WorldPos = swayPos + aimPos;

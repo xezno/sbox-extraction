@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Sandbox;
 
 namespace Extraction.Entities
 {
@@ -7,7 +8,7 @@ namespace Extraction.Entities
 		public Material Material = Material.Load( "materials/entities/healthstationradius.vmat" );
 		public bool ShouldDraw = false;
 
-		private const float Radius = 75f;
+		private const float Radius = 60f;
 
 		public override void Spawn()
 		{
