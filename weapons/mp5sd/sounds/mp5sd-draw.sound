@@ -4,7 +4,7 @@
 	{
 		sounds = 
 		[
-			"weapons/mp5sd/sounds/mp5sd-draw.mp3",
+			"weapons/mp5sd/sounds/mp5sd-draw.vsnd",
 		]
 		UI = false
 		Volume = 2.0
