@@ -20,8 +20,8 @@ namespace Extraction.Camera
 		}
 
 		public override void Update()
-		{			
-			var player = Player.Local;
+		{
+			var player = Local.Pawn;
 			if ( player == null ) return;
 
 			Pos = Vector3.Lerp( player.EyePos.WithZ( lastPos.z ), player.EyePos, 25.0f * Time.Delta );
@@ -35,7 +35,7 @@ namespace Extraction.Camera
 
 		private void ApplyFov()
 		{
-			var player = Player.Local as ExtractionPlayer;
+			var player = Local.Pawn as ExtractionPlayer;
 			var playerController = player.GetActiveController() as ExtractionController;
 			
 			if ( player == null ) return;

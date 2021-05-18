@@ -95,7 +95,8 @@ namespace Extraction.Weapons
 				return;
 			}
 			
-			Owner.GetActiveController().AddEvent( "attack" ); // Play attack anim
+			// TODO: Find new version of this
+			// Owner.AddEvent( "attack" ); // Play attack anim
 			
 			ShootEffects();
 			PlaySound( ShotSound );
@@ -132,11 +133,11 @@ namespace Extraction.Weapons
 			TimeSinceReload = 0;
 
 			IsReloading = true;
-			Owner.SetAnimParam( "b_reload", true );
+			(Owner as AnimEntity).SetAnimParam( "b_reload", true );
 			StartReloadEffects();
 		}
 
-		public override void OnPlayerControlTick( Player owner )
+		public override void Simulate( Client cl )
 		{
 			if ( TimeSinceDeployed < 0.6f )
 			{
@@ -146,7 +147,7 @@ namespace Extraction.Weapons
 
 			if ( !IsReloading )
 			{
-				base.OnPlayerControlTick( owner );
+				base.Simulate( cl );
 			}
 
 			if ( IsReloading && TimeSinceReload > ReloadTime )
@@ -172,8 +173,8 @@ namespace Extraction.Weapons
 				ReserveAmmo = 0;
 			}
 		}
-		
-		public override void TickPlayerAnimator( PlayerAnimator anim )
+
+		public override void SimulateAnimator( PawnAnimator anim )
 		{
 			anim.SetParam( "holdtype", (int)WeaponHoldType );
 			anim.SetParam( "aimat_weight", 1.0f );
@@ -197,7 +198,7 @@ namespace Extraction.Weapons
 
 			Particles.Create( ShootParticles, EffectEntity, "muzzle" );
 
-			if ( Owner == Player.Local )
+			if ( Owner == Local.Pawn )
 			{
 				_ = new Perlin();
 			}
@@ -254,7 +255,7 @@ namespace Extraction.Weapons
 
 				if ( !traceResult.Entity.IsWorld && playAudio && traceResult.Entity is Player )
 				{
-					PlayHitmarkerSound( Owner );
+					PlayHitmarkerSound( To.Single( Owner ) );
 					playAudio = false;
 				}
 			}

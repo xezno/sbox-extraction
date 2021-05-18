@@ -32,3 +32,12 @@
 @PointClass editorModel( "models/rust_props/black_bin/blackbin.vmdl" ) = ent_health_station : "Health station"
 [
 ]
+
+@PointClass model() = obj_extraction_vehicle : "Extraction Vehicle (EV)"
+[
+	model(studio) : "World model" : "models/rust_vehicles/truck_cabin/truck_trailer_a.vmdl" : "The model to use for the EV."
+	health(float) [ group="EV Properties" ] : "Health" : 500 : "The amount of health this EV has."
+	startRepaired(boolean) [ group="EV Properties" ] : "Start Repaired" : 0 : "Whether to spawn this EV repaired or not."
+	speed(float) [ group="EV Properties" ] : "Speed" : 20 : "The speed at which to move the EV when repaired."
+	target(target_destination) : "First stop target" : : "The name of the first path_track entity in the path that the EV should follow."
+]

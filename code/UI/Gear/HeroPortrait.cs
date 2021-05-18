@@ -75,7 +75,7 @@ namespace Extraction.UI
 		{
 			base.Tick();
 			
-			var player = Player.Local as ExtractionPlayer;
+			var player = Local.Pawn as ExtractionPlayer;
 			if ( player == null ) return;
 			
 			heroText.Text = $"{player.HeroData.Name}";

@@ -5,7 +5,7 @@ using Sandbox.UI;
 namespace Extraction.UI
 {
 	[Library]
-	public partial class ExtractionHud : Hud
+	public partial class ExtractionHud : HudEntity<RootPanel>
 	{
 		private static ExtractionHud current;
 
@@ -18,6 +18,7 @@ namespace Extraction.UI
 			current = this;
 			
 			RootPanel.AddChild<Crosshair>();
+			RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
 
 			RootPanel.AddChild<GearPanel>();
 			RootPanel.AddChild<GamePanel>();

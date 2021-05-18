@@ -3,6 +3,7 @@ using Extraction.Game;
 using Extraction.Hero;
 using Sandbox;
 using Extraction.UI;
+using Sandbox.UI;
 
 namespace Extraction
 {
@@ -11,7 +12,7 @@ namespace Extraction
 	{
 		private BaseGameState currentGameState;
 		
-		private static Hud extractionHud;
+		private static HudEntity<RootPanel> extractionHud;
 		public ExtractionGame()
 		{
 			HeroCollection.Load();
@@ -33,18 +34,15 @@ namespace Extraction
 			
 			Log.Info( "Recreated HUD" );
 		}
-		
-		public override void DoPlayerSuicide( Player player )
+
+		public override void ClientJoined( Client cl )
 		{
-			if ( player.LifeState != LifeState.Alive ) 
-				return;
+			base.ClientJoined( cl );
 
-			DamageInfo damage = DamageInfo.Generic( 1000.0f )
-				.WithAttacker( player );
+			var player = new ExtractionPlayer();
+			cl.Pawn = player;
 
-			player.TakeDamage( damage );
+			player.Respawn();
 		}
-
-		public override Player CreatePlayer() => new ExtractionPlayer();
 	}
 }

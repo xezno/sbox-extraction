@@ -20,7 +20,7 @@ namespace Extraction.UI
 
 		public override void Tick()
 		{
-			var player = Player.Local as ExtractionPlayer;
+			var player = Local.Pawn as ExtractionPlayer;
 			if ( player == null ) return;
 
 			healthText.Text = player.Health.ToString("D0");

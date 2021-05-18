@@ -21,7 +21,7 @@ namespace Extraction.UI
 		{
 			// Test values
 			// TODO: Hook up to weapon
-			float size = 32.0f + (64.0f * (Player.Local.Velocity.Length / 320f));
+			float size = 32.0f + (64.0f * (Local.Pawn.Velocity.Length / 320f));
 			
 			Style.Width = Length.Pixels(size);
 			Style.Height = Length.Pixels(size);

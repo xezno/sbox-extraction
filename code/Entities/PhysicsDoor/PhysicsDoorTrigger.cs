@@ -28,7 +28,7 @@ namespace Extraction.Entities
 				Log.Info( "Player nearby" );
 				if ( player.Velocity.Length > 250 )
 				{
-					(OwnerEntity as PhysicsDoor).ForceOpen( player );
+					(Owner as PhysicsDoor).ForceOpen( player );
 				}
 			}
 			base.StartTouch( other );

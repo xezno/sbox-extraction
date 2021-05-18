@@ -17,7 +17,7 @@ namespace Extraction.UI
 
 		public override void Tick()
 		{
-			var player = Player.Local;
+			var player = Local.Pawn;
 			if ( player == null ) return;
 			
 			if ( player is ExtractionPlayer extractionPlayer )

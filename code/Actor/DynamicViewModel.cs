@@ -13,8 +13,8 @@ namespace Extraction.Actor
 		private float lastYaw;
 
 		private Vector3 swingOffset;
-		protected float SwingInfluence => 0.05f;
-		protected float ReturnSpeed => 5.0f;
+		protected float SwingInfluence => 0.15f;
+		protected float ReturnSpeed => 25.0f;
 		protected float MaxOffsetLength => 10.0f;
 		protected float BobCycleTime => 14f;
 		protected Vector3 BobDirection => new( 0.0f, 1.0f, 0.5f );
@@ -24,34 +24,33 @@ namespace Extraction.Actor
 
 		private float lerpRate = 25f; // How quick the procedural ADS animation should be
 
-		public override void UpdateCamera( Sandbox.Camera camera )
+		public override void PostCameraSetup( ref CameraSetup camSetup )
 		{
-			if ( !Player.Local.IsValid() )
+			base.PostCameraSetup( ref camSetup );
+			
+			if ( !Local.Pawn.IsValid() )
 				return;
 
 			if ( !activated )
 			{
-				lastPitch = camera.Rot.Pitch();
-				lastYaw = camera.Rot.Yaw();
+				lastPitch = camSetup.Rotation.Pitch();
+				lastYaw = camSetup.Rotation.Yaw();
 
 				activated = true;
 			}
 
-			swayPos = camera.Pos;
+			swayPos = camSetup.Position;
 			
-			if ( Player.Local is ExtractionPlayer player &&
+			if ( Local.Pawn is ExtractionPlayer player &&
 			     player.Inventory.Active is ExtractionWeapon { IsAimingDownSights: true } weapon )
 			{
-				DebugOverlay.ScreenText(new Vector2(500, 490), aimPos.ToString());
-
 				var targetAimTransform = WorldRot.Right * weapon.AdsOffset.x + WorldRot.Forward * weapon.AdsOffset.y +
 				                     WorldRot.Up * weapon.AdsOffset.z;
 				
 				aimPos = aimPos.LerpTo( targetAimTransform, lerpRate * Time.Delta);
-				DebugOverlay.ScreenText(new Vector2(500, 500), aimPos.ToString());
 				
-				(( PlayerCamera ) camera).TargetFov = ExtractionConfig.AdsFieldOfView;
-				camera.ViewModelFieldOfView = camera.ViewModelFieldOfView.LerpTo( 45, lerpRate * Time.Delta, true);
+				(Local.Pawn.Camera as PlayerCamera).TargetFov = ExtractionConfig.AdsFieldOfView;
+				camSetup.ViewModel.FieldOfView = camSetup.ViewModel.FieldOfView.LerpTo( 45, lerpRate * Time.Delta, true);
 			}
 			else
 			{
@@ -63,7 +62,7 @@ namespace Extraction.Actor
 				var pitchDelta = Angles.NormalizeAngle( newPitch - lastPitch );
 				var yawDelta = Angles.NormalizeAngle( lastYaw - newYaw );
 
-				var playerVelocity = Player.Local.Velocity;
+				var playerVelocity = Local.Pawn.Velocity;
 				var verticalDelta = playerVelocity.z * Time.Delta;
 				var viewDown = Rotation.FromPitch( newPitch ).Up * -1.0f;
 				verticalDelta *= 1.0f - MathF.Abs( viewDown.Cross( Vector3.Down ).y );
@@ -77,11 +76,11 @@ namespace Extraction.Actor
 				lastPitch = newPitch;
 				lastYaw = newYaw;
 			
-				camera.ViewModelFieldOfView = camera.ViewModelFieldOfView.LerpTo( 65, 25f * Time.Delta, true );
+				camSetup.ViewModel.FieldOfView = camSetup.ViewModel.FieldOfView.LerpTo( 65, 25f * Time.Delta, true );
 			}
 
 			WorldPos = swayPos + aimPos;
-			WorldRot = camera.Rot;
+			WorldRot = camSetup.Rotation;
 		}
 
 		protected Vector3 CalcSwingOffset( float pitchDelta, float yawDelta )

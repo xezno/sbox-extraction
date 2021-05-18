@@ -27,7 +27,7 @@ namespace Extraction.UI
 
 		public override void Tick()
 		{
-			var player = Player.Local;
+			var player = Local.Pawn;
 			if ( player == null ) return;
 
 			if ( player.Inventory.Active is not ExtractionWeapon weapon )
@@ -54,7 +54,7 @@ namespace Extraction.UI
 		/// <returns>Current ammo, reserve ammo</returns>
 		private (int, int) GetAmmoInfo()
 		{
-			var player = Player.Local;
+			var player = Local.Pawn;
 			if ( player == null ) return (-1, -1);
 			if ( player.Inventory?.Active == null ) return (-1, -1);
 			

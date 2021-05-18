@@ -3,20 +3,20 @@ using Trace = Sandbox.Trace;
 
 namespace Extraction.Camera
 {
-	public class DeathCamera : BaseCamera
+	public class DeathCamera : Sandbox.Camera
 	{
 		Vector3 FocusPoint;
 		private float boxSize = 5;
 		
 		public override void Activated()
 		{			
-			FocusPoint = LastPos - GetViewOffset();
+			FocusPoint = CurrentView.Position - GetViewOffset();
 			FieldOfView = ExtractionConfig.FieldOfView;
 		}
 
 		public override void Update()
 		{
-			var player = Player.Local as BasePlayer;
+			var player = Local.Pawn as Player;
 			if ( player == null ) return;
 
 			// lerp the focus point
@@ -38,8 +38,8 @@ namespace Extraction.Camera
 		
 		public Vector3 GetSpectatePoint()
 		{
-			var player = Player.Local as BasePlayer;
-			if ( player == null ) return LastPos;
+			var player = Local.Pawn as Player;
+			if ( player == null ) return CurrentView.Position;
 			if ( !player.Corpse.IsValid() ) return player.WorldPos;
 
 			return player.Corpse.PhysicsGroup.MassCenter;
@@ -47,7 +47,7 @@ namespace Extraction.Camera
 
 		public Vector3 GetViewOffset()
 		{
-			var player = Player.Local as BasePlayer;
+			var player = Local.Pawn as Player;
 			if ( player == null ) return Vector3.Zero;
 			return player.EyeRot.Forward * (-130 * player.WorldScale) +
 			       Vector3.Up * (20 * player.WorldScale);

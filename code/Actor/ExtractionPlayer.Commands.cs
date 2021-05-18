@@ -8,7 +8,7 @@ namespace Extraction.Actor
 	{
 		private static ExtractionPlayer GetCommandCaller()
 		{
-			ExtractionPlayer target = ConsoleSystem.Caller as ExtractionPlayer;
+			ExtractionPlayer target = ConsoleSystem.Caller.Pawn as ExtractionPlayer;
 			return target;
 		}
 		
@@ -17,8 +17,6 @@ namespace Extraction.Actor
 		public static void SwitchCamera()
 		{
 			var player = GetCommandCaller();
-			if (!player.HasPermission("thirdperson"))
-				return;
 			
 			Log.Info( "Toggled third person mode" );
 			if ( player.Camera.GetType() == typeof( PlayerCamera ) )
@@ -35,8 +33,6 @@ namespace Extraction.Actor
 		public static void SetAmmo(int newAmmo)
 		{	
 			var player = GetCommandCaller();
-			if (!player.HasPermission("setammo"))
-				return;
 			
 			if ( player.Inventory.Active is ExtractionWeapon weapon )
 			{
@@ -49,8 +45,6 @@ namespace Extraction.Actor
 		public static void DoDamage(int damage = 10)
 		{
 			var player = GetCommandCaller();
-			if (!player.HasPermission("dodamage"))
-				return;
 			
 			player.TakeDamage(new DamageInfo() { Damage = damage });
 			Log.Info( $"Damaged the player for {damage}" );

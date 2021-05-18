@@ -7,7 +7,7 @@ using Sandbox.InternalTests;
 
 namespace Extraction.Actor
 {
-	partial class ExtractionPlayer : BasePlayer
+	partial class ExtractionPlayer : Player
 	{
 		public ExtractionPlayer()
 		{
@@ -17,9 +17,11 @@ namespace Extraction.Actor
 		public override void Respawn()
 		{
 			SetModel( ExtractionConfig.PlayerModel );
+			
 			Controller = new ExtractionController();
 			Animator = new ExtractionPlayerAnimator();
 			Camera = new PlayerCamera();
+			
 			EnableAllCollisions = true;
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
@@ -30,12 +32,12 @@ namespace Extraction.Actor
 
 			base.Respawn();
 			
-			
 			Health = HeroData.Health;
 		}
 		
 		private void SetupInventory()
 		{			
+			Inventory.DeleteContents();
 			for ( int i = 0; i < HeroData.Loadout.Length; i++ )
 			{
 				string item = HeroData.Loadout[i];
@@ -58,8 +60,10 @@ namespace Extraction.Actor
 			EnableDrawing = false;
 		}
 
-		protected override void Tick()
+		public override void Simulate( Client cl )
 		{
+			base.Simulate( cl );
+			
 			if ( LifeState == LifeState.Dead )
 			{
 				if ( Input.Pressed( ExtractionConfig.Respawn ) && IsServer )
@@ -76,7 +80,7 @@ namespace Extraction.Actor
 			}
 
 			DrawDebugShit();
-			TickActiveChild();
+			SimulateActiveChild( cl, ActiveChild );
 			TickPlayerUse();
 			
 			// gross

@@ -95,7 +95,7 @@ namespace Extraction.Entities
 			trigger = new();
 			trigger.WorldPos = WorldPos;
 			trigger.WorldRot = WorldRot;
-			trigger.OwnerEntity = this;
+			trigger.Owner = this;
 			trigger.SetupPhysics();
 
 			PositionA = WorldPos;
@@ -193,6 +193,7 @@ namespace Extraction.Entities
 				if ( moveid != movement )
 					return;
 
+				EnableAllCollisions = true;
 				// Toggle();
 			}
 		}
@@ -202,9 +203,11 @@ namespace Extraction.Entities
 			var prevSpeed = Speed;
 			Speed = player.Velocity.Length * 2; // Open super fast
 
+			EnableAllCollisions = false;
+
 			if ( State == DoorState.Closed || State == DoorState.Closing )
 			{
-				ShakeScreen( player );
+				ShakeScreen( To.Single(player) );
 				Open( player );
 			}
 

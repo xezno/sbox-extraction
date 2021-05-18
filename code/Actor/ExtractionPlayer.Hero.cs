@@ -23,7 +23,7 @@ namespace Extraction.Actor
 				return;
 			
 			// We want to change hero; access Hero directly, change the ID there
-			ChatPanel.AddInformation( this, $"Hero {newHeroId} selected; this will change when you respawn" );
+			ChatPanel.AddInformation( To.Single( Local.Pawn ), $"Hero {newHeroId} selected; this will change when you respawn" );
 			WishHeroId = newHeroId;
 		}
 		
@@ -42,7 +42,7 @@ namespace Extraction.Actor
 			{
 				string heroName = HeroCollection.HeroDatas[WishHeroId].Name;
 				string oldHeroName = HeroCollection.HeroDatas[HeroId].Name;
-				ChatPanel.AddInformation( Player.All, $"{Name} respawned as {heroName} (was {oldHeroName})" );
+				ChatPanel.AddInformation( To.Everyone, $"{Local.DisplayName} respawned as {heroName} (was {oldHeroName})" );
 			}
 
 			HeroId = WishHeroId;
