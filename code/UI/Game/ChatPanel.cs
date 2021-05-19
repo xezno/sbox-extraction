@@ -36,7 +36,6 @@ namespace Extraction.UI
 			Close();
 		}
 
-
 		void Open()
 		{
 			AddClass( "open" );

@@ -4,10 +4,16 @@ using Sandbox;
 
 namespace Extraction.Hero
 {
+	/// <summary>
+	/// This is just a container for all hero data stuff
+	/// </summary>
 	public class HeroCollection
 	{
 		public static Dictionary<string, HeroData> HeroDatas = new ();
 
+		/// <summary>
+		/// Loads all hero data json files from the filesystem
+		/// </summary>
 		public static void Load()
 		{
 			HeroDatas = new();
@@ -19,6 +25,9 @@ namespace Extraction.Hero
 			}
 		}
 
+		/// <summary>
+		/// Reloads whenever the client is hotloaded
+		/// </summary>
 		[Event( "client.hotloaded" )]
 		public static void OnHotload()
 		{

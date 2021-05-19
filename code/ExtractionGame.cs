@@ -26,6 +26,7 @@ namespace Extraction
 			}
 		}
 
+		// TODO: VERIFY: Does this command work?
 		[ServerCmd( "recreatehud", Help = "Recreate hud object" )]
 		public static void RecreateHud()
 		{

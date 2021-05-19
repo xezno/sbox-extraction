@@ -3,6 +3,7 @@ using Trace = Sandbox.Trace;
 
 namespace Extraction.Camera
 {
+	// Spectator death camera
 	public class DeathCamera : Sandbox.Camera
 	{
 		Vector3 FocusPoint;

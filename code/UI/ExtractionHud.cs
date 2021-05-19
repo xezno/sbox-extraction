@@ -24,6 +24,10 @@ namespace Extraction.UI
 			RootPanel.AddChild<GamePanel>();
 		}
 
+		/// <summary>
+		/// Command that displays the 'change hero' UI on the client
+		/// Server can't call this right now, but probably should be able to in case we need to force a hero change
+		/// </summary>
 		[ClientCmd( "changehero", CanBeCalledFromServer = false )]
 		public static void CmdChangeHero()
 		{

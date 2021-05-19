@@ -3,6 +3,10 @@ using Sandbox;
 
 namespace Extraction.Util
 {
+	/// <summary>
+	/// This sounds dumb, but it's a decent way to ensure that the same number is never picked twice.
+	/// Like Apple's "random" shuffle thing. It makes it feel more random by being less random.
+	/// </summary>
 	public class ControlledRandom
 	{
 		public int lastValue = 0;

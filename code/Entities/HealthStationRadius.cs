@@ -26,7 +26,7 @@ namespace Extraction.Entities
 
 			Render.SetLighting( obj );
 			var vertexBuffer = Render.GetDynamicVB( true );
-			// vertexBuffer.AddCube( WorldPos, Vector3.One * 100, Rotation.Identity );
+			// vertexBuffer.AddCube( WorldPos, Vector3.One * 100, Rotation.Identity ); - We can use this with a decal material to 'hack' together some decal shit
 			vertexBuffer.AddQuad( new Ray( WorldPos, Vector3.Up ), Vector3.Forward * Radius, Vector3.Left * Radius );
 			vertexBuffer.Draw( Material );
 		}

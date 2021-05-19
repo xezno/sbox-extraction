@@ -22,7 +22,7 @@ namespace Extraction.UI
 			
 			if ( player is ExtractionPlayer extractionPlayer )
 			{
-				if ( extractionPlayer.CurrentTraceType.HasFlag(ExtractionPlayer.TraceType.Objective) )
+				if ( extractionPlayer.CurrentTriggerType.HasFlag(ExtractionPlayer.TriggerType.Objective) )
 					text.Style.Display = DisplayMode.Flex;
 				else
 					text.Style.Display = DisplayMode.None;

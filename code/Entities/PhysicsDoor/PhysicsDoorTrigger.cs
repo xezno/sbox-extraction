@@ -5,6 +5,7 @@ using Sandbox.ScreenShake;
 
 namespace Extraction.Entities
 {
+	// TODO: VERIFY: BBox size
 	// This should all happen server-side and the client should never really know about it
 	public class PhysicsDoorTrigger : BaseTrigger
 	{

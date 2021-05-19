@@ -9,10 +9,10 @@ namespace Extraction.Actor
 	public partial class ExtractionPlayer
 	{
 		// Current hero ID
-		[Net] public string HeroId { get; set; }
+		[Net] public string HeroId { get; set; } // TODO: VERIFY: Does this need networking to all clients?
 
 		// Hero ID to respawn as
-		[Net] public string WishHeroId { get; set; } = ExtractionConfig.DefaultHero;
+		[Net] public string WishHeroId { get; set; } = ExtractionConfig.DefaultHero; // TODO: VERIFY: Does this need networking to all clients?
 
 		public HeroData HeroData => HeroCollection.HeroDatas[HeroId];
 
@@ -48,7 +48,7 @@ namespace Extraction.Actor
 			HeroId = WishHeroId;
 			
 			SetHeroControllerProperties();
-			SetHeroClothing();
+			Dress();
 		}
 
 		/// Set up new hero stuff

@@ -6,9 +6,7 @@ TODO Gameplay:
     - Mic on death - other team can hear you?
 
 TODO Controls:
-- +iv_menu: Ability1
-- +iv_use: Ability2
-- +iv_slot[1-3]: Inventory 1 to 3
+- Inv slots 4 + 5: abilities / gadgets?
 - Need quick menu bind??
 
 TODO UI:
@@ -25,9 +23,9 @@ TODO Feel:
 
 TODO Bugs:
 - Prevent sprint & firing at same time
+- Weird jittering in viewmodel + player sprint
 
 TODO Weapons:
 - Load weapons from JSON
-- Shotguns
 - Melee
 - Burst fire weapons

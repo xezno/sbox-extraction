@@ -10,6 +10,9 @@ namespace Extraction.Entities
 		private Dictionary<Player, TimeSince> playerTimers = new Dictionary<Player, TimeSince>();
 		private List<Player> currentlyInProximity = new List<Player>();
 
+		private int HealAmt => 2; // How much to heal
+		private float HealInterval => 0.1f; // How often to heal
+
 		private const float Radius = 75;
 		
 		public override void Spawn()
@@ -26,11 +29,11 @@ namespace Extraction.Entities
 			{
 				if ( playerTimers.TryGetValue( player, out var timeSince ) )
 				{
-					if ( timeSince.Relative > 0.1f )
+					if ( timeSince.Relative > HealInterval )
 					{
 						// TODO: Limit player health
-						player.Health += 2;
-						playerTimers[player] = 0;
+						player.Health += HealAmt;
+						playerTimers[player] = 0; // Reset player's timer so we don't heal them again for a while
 					}
 				}
 				else

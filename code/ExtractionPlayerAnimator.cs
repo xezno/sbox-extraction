@@ -4,9 +4,11 @@ using Sandbox;
 
 namespace Extraction
 {
+	/// <summary>
+	/// Player animator that keeps track of state so that you can use it for SceneWorlds / AnimEntity clones / etc.
+	/// </summary>
 	public class ExtractionPlayerAnimator : StandardPlayerAnimator
 	{
-		// Keep track of state so that we can use it in multiple places at once (i.e. hero portrait)
 		public Dictionary<string, object> Params { get; } = new();
 		
 		public override void SetParam( string name, bool val )

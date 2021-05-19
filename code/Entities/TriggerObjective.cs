@@ -6,6 +6,6 @@ namespace Extraction.Entities
 	[Library( "trigger_objective" )]
 	public class TriggerObjective : ExtractionTrigger
 	{
-		public override ExtractionPlayer.TraceType TraceType => ExtractionPlayer.TraceType.Objective;
+		public override ExtractionPlayer.TriggerType TriggerType => ExtractionPlayer.TriggerType.Objective;
 	}
 }

@@ -8,6 +8,8 @@ namespace Extraction.UI.Menus
 {
 	public class HeroCard : Panel
 	{
+		// TODO: These suck and need re-doing
+		
 		public Label heroText;
 		public Label heroDescription;
 		private Image heroImage;

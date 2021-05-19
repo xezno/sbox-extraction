@@ -1,9 +1,10 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 
-// HUD for player gear stuff (health, ammo, loadout...)
 namespace Extraction.UI
 {
+	// HUD for player gear stuff (health, ammo, loadout...)
+	
 	[Library]
 	public partial class GearPanel : Panel
 	{

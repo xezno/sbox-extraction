@@ -18,11 +18,10 @@ namespace Extraction.UI
 		{
 			SetClass( "ammo", true );
 
-
 			ammoIcon = Add.Panel( "ammo-icon" );
 			ammoText = Add.Label( "30", "ammo-current" );
 			reserveAmmoText = Add.Label( "90", "ammo-reserve" );
-			weaponNameText = Add.Label( "pew pew pew", "weapon-name" );
+			weaponNameText = Add.Label( "MP5SD", "weapon-name" );
 		}
 
 		public override void Tick()
@@ -32,6 +31,7 @@ namespace Extraction.UI
 
 			if ( player.Inventory.Active is not ExtractionWeapon weapon )
 			{
+				// Hide this if we're not holding a weapon
 				Style.Display = DisplayMode.None;
 				Style.Dirty();
 				return;

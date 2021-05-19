@@ -7,8 +7,7 @@ namespace Extraction.Actor
 	partial class ExtractionPlayer
 	{
 		// TODO - make ragdolls one per entity
-		// TODO - make ragdolls dissapear after a load of seconds
-		static EntityLimit RagdollLimit = new EntityLimit { MaxTotal = 2 }; // This doesn't work?
+		static EntityLimit RagdollLimit = new EntityLimit { MaxTotal = 10 }; // This works now
 
 		[ClientRpc]
 		void BecomeRagdollOnClient( Vector3 force, int forceBone )
@@ -36,7 +35,7 @@ namespace Extraction.Actor
 				if ( child is ModelEntity e )
 				{
 					string model = e.GetModelName();
-					if ( model != null && !model.Contains( "clothes" ) ) // Uck we 're better than this, entity tags, entity type or something?
+					if ( model != null && !model.Contains( "clothes" ) ) // Uck we're better than this, entity tags, entity type or something?
 						continue;
 
 					ModelEntity clothing = new();
@@ -59,7 +58,6 @@ namespace Extraction.Actor
 					ent.PhysicsGroup.AddVelocity( force );
 				}
 			}
-
 
 			Corpse = ent;
 

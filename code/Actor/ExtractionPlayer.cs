@@ -100,7 +100,7 @@ namespace Extraction.Actor
 			if ( Input.Pressed( ExtractionConfig.Use ) && IsServer )
 			{
 				Log.Info( "Player used" );
-				if ( CurrentTraceType.HasFlag( TraceType.Objective ) )
+				if ( CurrentTriggerType.HasFlag( TriggerType.Objective ) )
 				{
 					Log.Info( "TODO: Objective" );
 				}

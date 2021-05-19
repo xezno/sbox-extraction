@@ -27,43 +27,57 @@ namespace Extraction.Weapons
 
 		public override int Slot => 0;
 
+		//
+		// Shotgun-specific reload.
+		// Loads one shell at a time. Lets you pause the reload to shoot in-between shells.
+		//
 		public override void OnReloadFinish()
 		{
 			IsReloading = false;
 			TimeSincePrimaryAttack = 0;
 			
+			// Local functions are ass but this is super useful
 			void Finished() => ViewModelEntity?.SetAnimParam( "reload_finished", true ); 
 
+			// Do we have a full mag?
 			if ( AmmoClip >= ClipSize )
 			{
-				Finished();
+				Finished(); // Yeah, fuck off
 				return;
 			}
 
+			// Do we even have ammo?
 			if ( AvailableAmmo() != 0 )
 			{
+				// There's ammo, take it
 				AmmoClip++;
 				ReserveAmmo--;
 			}
 			else
 			{
+				// No ammo, fuck off
 				Finished();
 				return;
 			}
-
-			if ( Owner.Input.Down( InputButton.Attack1 ) ) // Janky way to pause reloads if we're between shells
+			
+			// Janky way to pause reloads if we're between shells
+			if ( Owner.Input.Down( InputButton.Attack1 ) )
 			{
 				Finished();
 				return;
 			}
 
+			// Have we finished reloading?
 			if ( AmmoClip < ClipSize && AvailableAmmo() > 0 )
 			{
+				// No, let's take another shell
 				Reload();
 			}
 			else
 			{
+				// Yeah, fuck off
 				Finished();
+				return;
 			}
 		}
 	}

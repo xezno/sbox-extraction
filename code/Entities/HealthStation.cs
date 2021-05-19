@@ -19,7 +19,7 @@ namespace Extraction.Entities
 
 			SetupPhysicsFromModel( PhysicsMotionType.Static, false );
 
-			Health = 25;
+			Health = 25; // This entity's health
 		}
 
 		protected override void OnDestroy()

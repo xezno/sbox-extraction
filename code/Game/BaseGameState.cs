@@ -1,5 +1,6 @@
 ﻿namespace Extraction.Game
 {
+	// TODO: Game state machine
 	public class BaseGameState
 	{
 		public BaseGameState()

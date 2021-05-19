@@ -5,6 +5,7 @@ using Sandbox;
 
 namespace Extraction.Camera
 {
+	// First-person player camera
 	public class PlayerCamera : FirstPersonCamera
 	{
 		private Vector3 lastPos;

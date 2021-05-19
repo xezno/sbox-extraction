@@ -5,6 +5,8 @@ using Sandbox.UI.Construct;
 
 namespace Extraction.UI
 {
+	// Player health HUD, duh
+	
 	public class Health : Panel
 	{
 		public Label healthText;

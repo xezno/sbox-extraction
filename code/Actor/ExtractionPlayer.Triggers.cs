@@ -6,10 +6,12 @@ namespace Extraction.Actor
 	public partial class ExtractionPlayer
 	{
 		[Net]
-		public TraceType CurrentTraceType { get; set; }
+		public TriggerType CurrentTriggerType { get; set; }
 	
+		
+		// TODO: This enum should probably get moved to somewhere that makes snese (like ExtractionTrigger or whatever)
 		[Flags]	
-		public enum TraceType
+		public enum TriggerType
 		{
 			None = 0,
 			Objective = 1,
@@ -18,7 +20,7 @@ namespace Extraction.Actor
 
 		private void DrawDebugShit()
 		{
-			DebugOverlay.ScreenText( new Vector2( 100, 100  ), $"Current trigger state: {CurrentTraceType}" );
+			DebugOverlay.ScreenText( new Vector2( 100, 100  ), $"Current trigger state: {CurrentTriggerType}" );
 		}
 	}
 }

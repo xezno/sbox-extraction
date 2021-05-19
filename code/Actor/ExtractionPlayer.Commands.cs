@@ -6,6 +6,8 @@ namespace Extraction.Actor
 {
 	public partial class ExtractionPlayer
 	{
+		// TODO: VERIFY: Do all of these commands still work after Pain Day?
+		
 		private static ExtractionPlayer GetCommandCaller()
 		{
 			ExtractionPlayer target = ConsoleSystem.Caller.Pawn as ExtractionPlayer;

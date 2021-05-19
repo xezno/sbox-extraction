@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Sandbox;
 using Sandbox.ScreenShake;
@@ -241,6 +240,7 @@ namespace Extraction.Entities
 			UpdateState( State == DoorState.Opening ? direction : OpenDirection.Closed );
 		}
 
+		// TODO: Do we need this?
 		[Input]
 		protected void Open( Entity entity )
 		{
@@ -253,6 +253,7 @@ namespace Extraction.Entities
 			UpdateState( State == DoorState.Opening ? direction : OpenDirection.Closed );
 		}
 
+		// TODO: Do we need this?
 		[Input]
 		protected void Close()
 		{

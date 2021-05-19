@@ -5,6 +5,9 @@ using Sandbox;
 
 namespace Extraction.Actor
 {
+	/// <summary>
+	/// Dynamic view model with ADS and sway logic
+	/// </summary>
 	public class DynamicViewModel : BaseViewModel
 	{
 		private bool activated;

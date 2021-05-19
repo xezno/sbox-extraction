@@ -3,8 +3,13 @@ using Sandbox.UI;
 
 namespace Extraction.UI
 {
+	/// <summary>
+	/// Crosshair UI
+	/// </summary>
 	public class Crosshair : Panel
 	{
+		// TODO: Different crosshairs for different configs / weapons
+		
 		public Crosshair()
 		{
 			StyleSheet.Load( "/ui/Crosshair.scss" );

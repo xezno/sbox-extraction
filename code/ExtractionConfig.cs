@@ -2,9 +2,16 @@
 
 namespace Extraction
 {
+	/// <summary>
+	/// Static class containing config parameters.
+	/// </summary>
 	public static class ExtractionConfig
 	{
+		// Should probably store these in a JSON file instead but whatever
+		
 		#region Camera
+		// FPS cam FOV and stuff
+		
 		public static float FieldOfView { get; set; } = 100f;
 
 		private static float sprintFovMultiplier = 1.1f;
@@ -15,7 +22,10 @@ namespace Extraction
 		
 		#region Heroes
 		// Ideally we'll have separate models for each hero in future, but for prototyping we'll just use Terry
+		
 		public static string PlayerModel => "models/citizen/citizen.vmdl";
+		
+		// Hero to load in as (we'll get rid of this when we have a lobby system or something)
 		public static string DefaultHero => "debug-slow";
 		#endregion
 		

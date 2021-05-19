@@ -7,8 +7,11 @@ namespace Extraction.Actor
 	{
 		private bool dressed;
 
-		private List<ModelEntity> clothes = new List<ModelEntity>();
+		private List<ModelEntity> clothes = new();
 
+		/// <summary>
+		/// Take off your clothes
+		/// </summary>
 		public void Undress()
 		{
 			// 😳
@@ -18,11 +21,13 @@ namespace Extraction.Actor
 			}
 				
 			clothes.Clear();
-
 			dressed = false;
 		}
 		
-		public void SetHeroClothing()
+		/// <summary>
+		/// Put on your clothes
+		/// </summary>
+		public void Dress()
 		{
 			if ( dressed )
 				Undress();

@@ -7,6 +7,7 @@ using Sandbox.UI;
 
 namespace Extraction.UI
 {
+	// BUG: This is broken after Pain Day: SceneWorlds no longer seem to work. VERIFY: Does Garry know?
 	public class HeroPortrait : Panel
 	{
 		private Angles CamAngles;
