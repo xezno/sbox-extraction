@@ -30,7 +30,7 @@ namespace Extraction.UI
 			Chat.OnOpenChat += Open;
 		}
 
-		void Blur()
+		new void Blur()
 		{
 			Input.Text = "";
 			Close();

@@ -92,30 +92,30 @@ namespace Extraction.Entities
 
 			// Setup run-thru trigger
 			trigger = new();
-			trigger.WorldPos = WorldPos;
-			trigger.WorldRot = WorldRot;
+			trigger.Position = Position;
+			trigger.Rotation = Rotation;
 			trigger.Owner = this;
 			trigger.SetupPhysics();
 
-			PositionA = WorldPos;
+			PositionA = Position;
 			// Get the direction we want to move
 			var dir = Rotation.From( MoveDir ).Forward;
 			if ( MoveDirIsLocal ) dir = Transform.NormalToWorld( dir );
 
 			// Open position is the size of the bbox in the direction minus the lip size
 			var boundSize = OOBBox.Size;
-			PositionB = WorldPos + dir * (MathF.Abs( boundSize.Dot( dir ) ) - Lip);
+			PositionB = Position + dir * (MathF.Abs( boundSize.Dot( dir ) ) - Lip);
 
 			State = DoorState.Closed;
 			SpawnFlags.Add( Flags.Use );
 
 			if ( SpawnOpen )
 			{
-				WorldPos = PositionB;
+				Position = PositionB;
 				State = DoorState.Open;
 			}
 			
-			RotationClosed = WorldRot.Angles();
+			RotationClosed = Rotation.Angles();
 
 			var degrees = RotationDegrees - Lip;
 
@@ -145,7 +145,7 @@ namespace Extraction.Entities
 
 		public virtual bool IsUsable( Entity user ) => SpawnFlags.Has( Flags.Use ) && !SpawnFlags.Has( Flags.IgnoreUse );
 
-		public new void UpdateState( OpenDirection open )
+		public void UpdateState( OpenDirection open )
 		{
 			Angles rot = open switch
 			{
@@ -157,7 +157,7 @@ namespace Extraction.Entities
 			if ( Speed <= 0 )
 				Speed = 0.1f;
 
-			var dfference = (WorldRot.Angles() - rot).Normal;
+			var dfference = (Rotation.Angles() - rot).Normal;
 			var distance = dfference.Length;
 			var seconds = distance / Speed;
 
@@ -168,7 +168,7 @@ namespace Extraction.Entities
 
 		async Task DoMove( Rotation target, float timeToTake, OpenDirection open )
 		{
-			var startPos = WorldRot;
+			var startPos = Rotation;
 			int moveid = ++movement;
 
 			for ( float f = 0; f < 1; )
@@ -221,8 +221,8 @@ namespace Extraction.Entities
 
 		void SetPositionAndUpdateVelocity( Rotation pos )
 		{
-			var oldPos = WorldRot;
-			WorldRot = pos;
+			var oldPos = Rotation;
+			Rotation = pos;
 		}
 
 		[Input]
@@ -231,9 +231,9 @@ namespace Extraction.Entities
 			if ( State == DoorState.Open || State == DoorState.Opening ) State = DoorState.Closing;
 			else if ( State == DoorState.Closed || State == DoorState.Closing ) State = DoorState.Opening;
 
-			Log.Info( Transform.ToLocal( entity.Transform ).Pos.ToString() );
+			Log.Info( Transform.ToLocal( entity.Transform ).Position.ToString() );
 
-			var direction = (Transform.ToLocal( entity.Transform ).Pos.y > 0)
+			var direction = (Transform.ToLocal( entity.Transform ).Position.y > 0)
 				? OpenDirection.Front
 				: OpenDirection.Back;
 
@@ -246,7 +246,7 @@ namespace Extraction.Entities
 		{
 			if ( State == DoorState.Closed || State == DoorState.Closing ) State = DoorState.Opening;
 			
-			var direction = (Transform.ToLocal( entity.Transform ).Pos.y > 0)
+			var direction = (Transform.ToLocal( entity.Transform ).Position.y > 0)
 				? OpenDirection.Front
 				: OpenDirection.Back;
 

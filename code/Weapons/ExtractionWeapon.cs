@@ -295,7 +295,7 @@ namespace Extraction.Weapons
 			}
 	
 			ViewModelEntity = new DynamicViewModel();
-			ViewModelEntity.WorldPos = WorldPos;
+			ViewModelEntity.Position = Position;
 			ViewModelEntity.Owner = Owner;
 			ViewModelEntity.EnableViewmodelRendering = true;
 			ViewModelEntity.SetModel( ViewModelPath );

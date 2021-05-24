@@ -47,20 +47,24 @@ namespace Extraction.Actor
 			if ( Local.Pawn is ExtractionPlayer player &&
 			     player.Inventory.Active is ExtractionWeapon { IsAimingDownSights: true } weapon )
 			{
-				var targetAimTransform = WorldRot.Right * weapon.AdsOffset.x + WorldRot.Forward * weapon.AdsOffset.y +
-				                     WorldRot.Up * weapon.AdsOffset.z;
+				var targetAimTransform = Rotation.Right * weapon.AdsOffset.x + Rotation.Forward * weapon.AdsOffset.y +
+				                         Rotation.Up * weapon.AdsOffset.z;
 				
 				aimPos = aimPos.LerpTo( targetAimTransform, lerpRate * Time.Delta);
+
+				if ( Local.Pawn.Camera is PlayerCamera playerCamera )
+				{
+					playerCamera.TargetFov = ExtractionConfig.AdsFieldOfView;
+				}
 				
-				(Local.Pawn.Camera as PlayerCamera).TargetFov = ExtractionConfig.AdsFieldOfView;
 				camSetup.ViewModel.FieldOfView = camSetup.ViewModel.FieldOfView.LerpTo( 45, lerpRate * Time.Delta, true);
 			}
 			else
 			{
 				aimPos = aimPos.LerpTo( Vector3.Zero, lerpRate * Time.Delta );
 
-				var newPitch = WorldRot.Pitch();
-				var newYaw = WorldRot.Yaw();
+				var newPitch = Rotation.Pitch();
+				var newYaw = Rotation.Yaw();
 
 				var pitchDelta = Angles.NormalizeAngle( newPitch - lastPitch );
 				var yawDelta = Angles.NormalizeAngle( lastYaw - newYaw );
@@ -74,7 +78,7 @@ namespace Extraction.Actor
 				var offset = CalcSwingOffset( pitchDelta, yawDelta );
 				offset += CalcBobbingOffset( playerVelocity );
 
-				swayPos += WorldRot * offset;
+				swayPos += Rotation * offset;
 
 				lastPitch = newPitch;
 				lastYaw = newYaw;
@@ -82,8 +86,8 @@ namespace Extraction.Actor
 				camSetup.ViewModel.FieldOfView = camSetup.ViewModel.FieldOfView.LerpTo( 65, 25f * Time.Delta, true );
 			}
 
-			WorldPos = swayPos + aimPos;
-			WorldRot = camSetup.Rotation;
+			Position = swayPos + aimPos;
+			Rotation = camSetup.Rotation;
 		}
 
 		protected Vector3 CalcSwingOffset( float pitchDelta, float yawDelta )

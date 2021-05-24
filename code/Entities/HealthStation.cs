@@ -13,9 +13,9 @@ namespace Extraction.Entities
 
 			SetModel( "models/rust_props/black_bin/blackbin.vmdl" );
 			trigger = new();
-			trigger.WorldPos = WorldPos;
+			trigger.Position = Position;
 
-			WorldScale = 0.6f;
+			Scale = 0.6f;
 
 			SetupPhysicsFromModel( PhysicsMotionType.Static, false );
 
@@ -32,7 +32,7 @@ namespace Extraction.Entities
 		[Event( "frame" )]
 		public void OnFrame()
 		{
-			radius.WorldPos = WorldPos + (Vector3.Up * 0.1f);
+			radius.Position = Position + (Vector3.Up * 0.1f);
 			radius.ShouldDraw = true;
 		}
 

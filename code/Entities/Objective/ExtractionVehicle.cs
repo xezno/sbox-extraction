@@ -9,7 +9,7 @@ namespace Extraction.Entities.Objective
 		public string ModelPath { get; set; }
 		
 		[HammerProp("health")]
-		public float MaxHealth { get; set; }
+		public int MaxHealth { get; set; }
 		
 		[HammerProp("startRepaired")]
 		public bool StartRepaired { get; set; }
@@ -19,8 +19,6 @@ namespace Extraction.Entities.Objective
 		
 		[HammerProp("target")]
 		public string Target { get; set; }
-
-		[Net] public float Health { get; set; }
 
 		public override void Spawn()
 		{

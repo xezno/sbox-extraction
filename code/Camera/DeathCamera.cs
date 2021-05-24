@@ -41,7 +41,7 @@ namespace Extraction.Camera
 		{
 			var player = Local.Pawn as Player;
 			if ( player == null ) return CurrentView.Position;
-			if ( !player.Corpse.IsValid() ) return player.WorldPos;
+			if ( !player.Corpse.IsValid() ) return player.Position;
 
 			return player.Corpse.PhysicsGroup.MassCenter;
 		}
@@ -50,8 +50,8 @@ namespace Extraction.Camera
 		{
 			var player = Local.Pawn as Player;
 			if ( player == null ) return Vector3.Zero;
-			return player.EyeRot.Forward * (-130 * player.WorldScale) +
-			       Vector3.Up * (20 * player.WorldScale);
+			return player.EyeRot.Forward * (-130 * player.Scale) +
+			       Vector3.Up * (20 * player.Scale);
 		}
 	}
 }
