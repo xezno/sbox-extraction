@@ -43,14 +43,14 @@ namespace Extraction.Weapons
 		public virtual Vector3 AdsOffset => new();
 		public bool IsAimingDownSights { get; private set; }
 
-		[NetPredicted] public int ReserveAmmo { get; set; }
-		[NetPredicted] public int AmmoClip { get; set; }
-		[NetPredicted] public TimeSince TimeSinceReload { get; set; }
-		[NetPredicted] public bool IsReloading { get; set; }
-		[NetPredicted] public TimeSince TimeSinceDeployed { get; set; }
+		[Net, Predicted] public int ReserveAmmo { get; set; }
+		[Net, Predicted] public int AmmoClip { get; set; }
+		[Net, Predicted] public TimeSince TimeSinceReload { get; set; }
+		[Net, Predicted] public bool IsReloading { get; set; }
+		[Net, Predicted] public TimeSince TimeSinceDeployed { get; set; }
 		
-		[NetLocalPredicted] private int RandomSeed { get; set; }
-		[NetLocalPredicted] private int RandomCount { get; set; }
+		[Net, Local, Predicted] private int RandomSeed { get; set; }
+		[Net, Local, Predicted] private int RandomCount { get; set; }
 		
 		public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 		
